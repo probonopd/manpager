@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Manpager
+GenericName=Manual Viewer
+Comment=System manual page viwer
+Exec=manpager
+Categories=Application;Utility;DesktopUtility;Qt;Viewer;
+Icon=manpager

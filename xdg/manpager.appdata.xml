@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+    <id type="desktop">manpager.desktop</id>
+    <name>Manpager</name>
+    <license>GPL-3.0+</license>
+    <description>
+        <p>A simple system manual page viewer</p>
+    </description>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://www.cherokeesofidaho.org/public/screenshots/manpager.png</image>
+        </screenshot>
+    </screenshots>
+    <url type="homepage">https://www.cherokeesofidaho.org</url>
+    <updatecontact>tychosoft@gmail.com</updatecontact>
+</application>

@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="manpager.png">qrc/manpager.png</file>
+        <file alias="downarrow.png">qrc/downarrow.png</file>
+        <file alias="searchicon.png">qrc/searchicon.png</file>
+        <file alias="tribal.png">qrc/tribal.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="refresh.png">qrc/glyph-refresh.png</file>
+        <file alias="refresh@2x.png">qrc/glyph-refresh@2x.png</file>
+        <file alias="settings.png">qrc/glyph-settings.png</file>
+        <file alias="settings@2x.png">qrc/glyph-settings@2x.png</file>
+        <file alias="info.png">qrc/glyph-info.png</file>
+        <file alias="info@2x.png">qrc/glyph-info@2x.png</file>
+        <file alias="clear.png">qrc/glyph-clear.png</file>
+        <file alias="clear@2x.png">qrc/glyph-clear@2x.png</file>
+        <file alias="exit.png">qrc/glyph-exit.png</file>
+        <file alias="exit@2x.png">qrc/glyph-exit@2x.png</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file alias="default.css">qrc/default.css</file>
+        <file alias="macosx.css">qrc/macosx.css</file>
+        <file alias="windows.css">qrc/windows.css</file>
+    </qresource>
+</RCC>
