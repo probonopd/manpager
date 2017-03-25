@@ -13,7 +13,7 @@ Manpager first appeared as "coastal manpager" in coastal-qt in 2011.  Back then 
 Install
 =======
 
-On Mac I presume TextSeeker can be delivered as a fully stand-alone bundled application, complete with required Qt runtime libraries.  This may then be bundled together and distributed with other desktop apps in a common .dmg installer.  This project can produce a stand-alone application that can be used and redistributed directly and separately if so desired.  This package can be setup to build thru macports or homebrew as well.
+On Mac I presume Manpager can be delivered as a fully stand-alone bundled application, complete with required Qt runtime libraries.  This may then be bundled together and distributed with other desktop apps in a common .dmg installer.  This project can produce a stand-alone application that can be used and redistributed directly and separately if so desired.  This package can be setup to build thru macports or homebrew as well.
 
 For Microsoft Windows use I produce a deploy archive directory which includes Qt runtime dll libraries.  The deploy archive directory from this and related applications are then gathered together, removing duplication of runtime dll's, and will normally be delivered in a common .exe installer using inno setup.  The archive directory from this project could also be used to create a stand-alone windows binary distribution of just this application.
 
