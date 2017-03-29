@@ -9,10 +9,14 @@
 
 *.tar.gz
 *.zip
+*.app
+*.exe
 
+.qmake.*
 .DS_Store
 Makefile
 manpager
+manpager.spec
 
 moc_*
 qrc_*
