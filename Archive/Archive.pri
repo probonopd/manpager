@@ -12,14 +12,6 @@ unix {
     publish.commands += rm -f $${OUT_PWD}/$${ARCHIVE}-${VERSION}.tar.gz &&
     publish.commands += git archive --format tar --prefix=$${ARCHIVE}-$${VERSION}/ HEAD |
     publish.commands += gzip >$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz
-
-    exists($${PWD}/Archive.spec) {
-        specfile.input = $${PWD}/Archive.spec
-        specfile.output = $${ARCHIVE}.spec
-
-        RELEASE=$$system($${PWD}/Archive.bld $${VERSION})
-        QMAKE_SUBSTITUTES += specfile
-    }
 }
 
 # binary packages, for release builds only...
@@ -39,7 +31,6 @@ win32:CONFIG(release, release|debug) {
 }
 
 OTHER_FILES += \
-    $${PWD}/Archive.spec \
     $${PWD}/Archive.sh \
     $${PWD}/Archive.cmd \
     $${PWD}/Archive.bld \

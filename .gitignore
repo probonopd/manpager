@@ -16,7 +16,6 @@
 .DS_Store
 Makefile
 manpager
-manpager.spec
 
 moc_*
 qrc_*

@@ -4,9 +4,11 @@ else:TARGET = manpager
 COPYRIGHT = 2017
 ARCHIVE = manpager
 TEMPLATE = app
-VERSION = 1.0.0
+VERSION = 1.0.1
 CONFIG += c++11 warning widgets gui core
 QT += widgets
+
+xcode_export:CONFIG -= app_bundle
 
 unix {
     isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt5$::)
@@ -95,6 +97,7 @@ OTHER_FILES += \
     Manpager.plist \
     Manpager.icns \
     Manpager.ico \
+    manpager.spec \
     CHANGELOG \
     LICENSE \
     README.md \

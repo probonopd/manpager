@@ -1,6 +1,6 @@
-Name: $$ARCHIVE
-Version: $$VERSION
-Release: $$RELEASE
+Name: manpager
+Version: 1.0.1
+Release: 1
 Summary: Simple system manual page viewer
 License: GPL-3.0+
 Source:         %{name}-%{version}.tar.gz
