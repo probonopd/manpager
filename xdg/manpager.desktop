@@ -5,5 +5,5 @@ Name=Manpager
 GenericName=Manual Viewer
 Comment=System manual page viewer
 Exec=manpager
-Categories=Application;Utility;DesktopUtility;Qt;Viewer;
+Categories=Application;Utility;Qt;Viewer;
 Icon=manpager
