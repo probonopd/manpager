@@ -3,3 +3,6 @@ v1.0.0
 
 v1.0.1
 * Make specfile part of source
+
+v1.0.2
+* Updated specfile to support fedora and rhel
