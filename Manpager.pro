@@ -4,7 +4,7 @@ else:TARGET = manpager
 COPYRIGHT = 2017
 ARCHIVE = manpager
 TEMPLATE = app
-VERSION = 1.0.1
+VERSION = 1.0.2
 CONFIG += c++11 warning widgets gui core
 QT += widgets
 
