@@ -1,14 +1,13 @@
 Name: manpager
+Epoch:   1
 Version: 1.0.2
 Release: 1
 Summary: Simple system manual page viewer
 License: GPLv3+
 URL:     https://gitlab.com/tychosoft/manpager
 Source:  https://pub.cherokeesofidaho.org/tarballs/%{name}-%{version}.tar.gz
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildRequires: qt5-qtbase-devel qt5-linguist
 BuildRequires:  gcc-c++
-Group: Applications/System
 
 %description
 A simple system manual page viewer offering search.  This is somewhat
