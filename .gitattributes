@@ -4,5 +4,3 @@
 
 .gitattributes	export-ignore
 .gitignore	export-ignore
-
-Archive/	export-ignore
