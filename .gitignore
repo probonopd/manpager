@@ -11,6 +11,7 @@
 *.tar.gz
 *.zip
 *.app
+*.app.dSYM
 *.exe
 
 .qmake.*

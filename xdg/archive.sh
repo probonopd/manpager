@@ -1,7 +1,7 @@
 #!/bin/sh
 ORIGIN=`dirname $0`
 TARGET="$1"
-APPTRANSLATE="${ORIGIN}/../translate"
+APPTRANSLATE="${ORIGIN}/../xdg"
 ARCHIVE="../Archive"
 set -e
 mkdir -p ${ARCHIVE}
