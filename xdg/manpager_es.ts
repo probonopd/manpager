@@ -17,11 +17,15 @@
     </message>
     <message>
         <source>Copyright (c) </source>
-        <translation>Derechos de autor </translation>
+        <translation type="vanished">Derechos de autor </translation>
     </message>
     <message>
         <source>About Manpager</source>
         <translation>Acerca de Manpager</translation>
+    </message>
+    <message>
+        <source>Copyright (C) </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -40,6 +44,18 @@
     <message>
         <source>&amp;Next</source>
         <translation>&amp;Siguiente</translation>
+    </message>
+    <message>
+        <source>Find Text</source>
+        <translation type="unfinished">Búsqueda de texto</translation>
+    </message>
+    <message>
+        <source>Meta+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Meta+N</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -455,6 +471,17 @@
     </message>
     <message>
         <source>Directory</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>Statusbar</name>
+    <message>
+        <source>Press F3 to search for text in content</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F3</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -27,8 +27,8 @@ About::About(QWidget *parent) :
 QDialog(parent, Qt::Dialog|Qt::WindowTitleHint|Qt::CustomizeWindowHint|Qt::MSWindowsFixedSizeDialogHint)
 {
     ui.setupUi(static_cast<QDialog*>(this));
-    ui.labelVersion->setText(tr("Version: ") + VERSION);
-    ui.labelCopyright->setText(tr("Copyright (C) ") + COPYRIGHT + " Tycho Softworks");
+    ui.labelVersion->setText(tr("Version: ") + PROJECT_VERSION);
+    ui.labelCopyright->setText(tr("Copyright (C) ") + PROJECT_COPYRIGHT + " Tycho Softworks");
     setWindowTitle(tr("About Manpager"));
 
     connect(ui.aboutButton, &QToolButton::clicked, this, &About::aboutProject);

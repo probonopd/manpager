@@ -1,86 +1,165 @@
-win32|macx:TARGET = Manpager
-else:TARGET = manpager
-
-COPYRIGHT = 2017
 PRODUCT = Manpager
-ARCHIVE = manpager
 TEMPLATE = app
-VERSION = 1.0.2
+VERSION = 1.1.0
+COPYRIGHT = 2017
+ARCHIVE = manpager
+TARGET = manpager
+
+# basic compile and link config
 CONFIG += c++11 warning widgets gui core
 QT += widgets
 
-xcode_export:CONFIG -= app_bundle
-
-unix {
-    isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt5$::)
-    !macx:CONFIG += install_program install_desktop
+# build type specific options
+CONFIG(release,release|debug):DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
+else:!CONFIG(no-testdata) {
+    CONFIG(userdata):DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/userdata\\\"
+    else:DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/testdata\\\"
+    CONFIG -= app_bundle
 }
 
-macx:equals(PREFIX, "/usr/local") {
-    CONFIG -= app_bundle
-    CONFIG += install_program
+# platform specific options
+unix {
+    isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt5$::)
+    system(rm -f "$${OUT_PWD}/$${TARGET}")
+
+    exists(/usr/bin/lrelease-qt5) {
+        LRELEASE = lrelease-qt5
+        LUPDATE = lupdate=qt5
+    }
+    else {
+        LRELEASE = lrelease
+        LUPDATE = lupdate
+    }    
+}
+
+macx {
+    equals(PREFIX, "/usr/local"):CONFIG -= app_bundle
+    CONFIG(app_bundle) {
+        CONFIG(release, release|debug):CONFIG += separate_debug_info force_debug_info
+        QMAKE_INFO_PLIST = "$${PRODUCT}.plist"
+        TARGET = "$${PRODUCT}"
+        ICON = "$${PRODUCT}.icns"
+        system(rm -rf "$${OUT_PWD}/$${TARGET}.app")
+    }
 }
 
 win32 {
     QMAKE_CXXFLAGS_RELEASE += /Zi
     QMAKE_LFLAGS_RELEASE += /debug
     CONFIG -= debug_and_release debug_and_release_target
-    CONFIG += skip_target_version_ext
+    CONFIG += skip_target_version_ext app_bundle
+    LRELEASE = lrelease
+    LUPDATE = lupdate
     DEFINES += WIN32_LEAN_AND_MEAN
+    TARGET = "$${PRODUCT}"
+    RC_ICONS += "$${PRODUCT}.ico"
+    system(rmdir /S/Q $$shell_path($${OUT_PWD}/bundled) 2>nul)
+    system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/bundled))) 
+    system(del /q $$shell_path($${OUT_PWD}/$${PRODUCT}.exe) 2>nul)
 }
 
-CONFIG(release,release|debug) {
-    DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
-    macx:CONFIG+=force_debug_info separate_debug_info
-}
-else:!no-testdata:DEFINES += PROJECT_TESTDATA=\"$${PWD}/testdata\"
+# global defines
+DEFINES += \
+    PROJECT_VERSION=\\\"$${VERSION}\\\" \
+    PROJECT_COPYRIGHT=\\\"$${COPYRIGHT}\\\" \
 
-DEFINES += PROJECT_VERSION=$${VERSION} PROJECT_COPYRIGHT=$${COPYRIGHT}
+# project layout
+OBJECTS_DIR = objects
+RCC_DIR = generated
+MOC_DIR = generated
+UI_DIR = generated
 
-include(src/Main.pri)
-include(src/Utils.pri)
-include(src/Viewer.pri)
-include(xdg/XDG.pri)
+HEADERS += $$files(*.hpp)
+SOURCES += $$files(*.cpp)
+FORMS += $$files(*.ui)
+TRANSLATIONS += $$files(xdg/*.ts)
 
-install_program {
+# generate and support translations
+QMAKE_EXTRA_TARGETS += lupdate
+QMAKE_EXTRA_COMPILERS += lrelease
+lupdate.commands += $${LUPDATE} "$${PWD}/$${PRODUCT}.pro"
+system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/generated))) 
+
+lrelease.input = TRANSLATIONS
+lrelease.output = "$${OUT_PWD}"/generated/${QMAKE_FILE_BASE}.qm
+lrelease.commands += $${LRELEASE} ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
+lrelease.CONFIG += no_link
+PRE_TARGETDEPS += compiler_lrelease_make_all
+
+# extra install targets based on bundle state
+!CONFIG(app_bundle) {
     QMAKE_EXTRA_TARGETS += target locale
     INSTALLS += target locale
 
-    target.path = $$PREFIX/bin
+    target.path = "$$PREFIX/bin"
     target.depends = all
 
-    locale.files = $${PWD}/xdg/*.qm
-    locale.path = $$PREFIX/share/translations
+    locale.path = "$$PREFIX/share/translations"
     locale.depends = target
-}
+    locale.commands += $${QMAKE_INSTALL_FILE} generated/*.qm "$(INSTALL_ROOT)/$$PREFIX/share/translations"
 
-# extra unix cleanup
-unix {
-    QMAKE_EXTRA_TARGETS += clean extra_clean distclean publish_clean
+    unix:!macx {
+        QMAKE_EXTRA_TARGETS += desktop pixmaps appdata
+        INSTALLS += desktop pixmaps appdata
+
+        desktop.files = xdg/*.desktop
+        desktop.path = "$$PREFIX/share/applications"
+        desktop.depends = target
+
+        pixmaps.files = xdg/*.png
+        pixmaps.path = "$$PREFIX/share/pixmaps"
+        pixmaps.depends = target
+
+        appdata.files = xdg/*.appdata.xml
+        appdata.path = "$$PREFIX/share/appdata"
+        appdata.depends = target
+    }
+}
+else {
+    win32:CONFIG(release, release|debug) {
+        QMAKE_POST_LINK += rmdir /S/Q bundled && mkdir bundled && mkdir bundled\\translations &&
+        QMAKE_POST_LINK += copy /y $${TARGET}.exe bundled\\$${TARGET}.exe && cd bundled &&
+        QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0 &&
+        QMAKE_POST_LINK += copy /y $$shell_path("../generated/*.qm") translations
+    }
+
+    macx:CONFIG(release, release|debug): {
+        QMAKE_POST_LINK += mkdir -p "$${TARGET}.app/Contents/Translations" &&
+        QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0 -always-overwrite &&
+        QMAKE_POST_LINK += $${LRELEASE} -silent "$${PWD}/$${PRODUCT}.pro" &&
+        QMAKE_POST_LINK += cp -a "$$[QT_INSTALL_TRANSLATIONS]"/qt_??.qm generated/*.qm "$${TARGET}.app/Contents/Translations"
+    }
+    
+    QMAKE_EXTRA_TARGETS += clean extra_clean distclean
     clean.depends += extra_clean
-    extra_clean.commands += rm -f $${TARGET}
-    macx:extra_clean.commands += && rm -rf $${TARGET}.app $${TARGET}.app.dSYM
-    distclean.depends += publish_clean
-    publish_clean.commands = rm -rf Archive $${ARCHIVE}-*.tar.gz $${PWD}/xdg/*.qm
-}
+    macx:extra_clean.commands += rm -rf $${TARGET}.app $${TARGET}.app.dSYM
+    win32:extra_clean.commands += rmdir /S/Q bundled && mkdir bundled
+} 
 
-# extra windows cleanup
-win32 {
-    QMAKE_EXTRA_TARGETS += clean extra_clean
-    clean.depends += extra_clean
-    extra_clean.commands += if exists $${TARGET}.exe del $${TARGET}.exe
-}
+# publish support
+QMAKE_EXTRA_TARGETS += publish
+publish.commands += $$QMAKE_DEL_FILE *.tar.gz &&
+publish.commands += cd $${PWD} &&
+publish.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD
+linux:exists("/usr/bin/rpmbuild"):\
+    publish.commands += && rm -f *.src.rpm && rpmbuild --define \"_tmppath /tmp\" --define \"_sourcedir .\" --define \"_srcrpmdir .\" --nodeps -bs $${ARCHIVE}.spec
 
-RESOURCES += Manpager.qrc
+RESOURCES += $${PRODUCT}.qrc
 OTHER_FILES += \
-    manpager.spec \
+    $${ARCHIVE}.spec \
     CHANGELOG \
     LICENSE \
     README.md \
     CONTRIBUTING.md \
+    $${PRODUCT}.icns \
+    $${PRODUCT}.ico \
+    $${PRODUCT}.plist \
+    xdg/$${ARCHIVE}.png \
+    xdg/$${ARCHIVE}.desktop \
+    xdg/$${ARCHIVE}.appdata.xml \
 
 QMAKE_TARGET_COMPANY = "Tycho Softworks"
-QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} Tycho Softwork"
+QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} Tycho Softworks"
 QMAKE_TARGET_PRODUCT = "$${PRODUCT}"
 QMAKE_TARGET_DESCRIPTION = "View system manpages"
 

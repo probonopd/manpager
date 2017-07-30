@@ -313,6 +313,7 @@ body:
                         nl = false;
                         break;
                     }
+                    break;
                 default:
                     text = text + QChar(*body);
                 }
