@@ -1,3 +1,8 @@
+bundled/
+generated/
+doc/
+*.gch/
+
 *_resource.rc
 *.pro.user.*
 *.pro.user

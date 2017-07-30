@@ -1,6 +1,6 @@
 Name: manpager
 Epoch:   1
-Version: 1.0.2
+Version: 1.1.0
 Release: 1
 Summary: Simple system manual page viewer
 License: GPLv3+

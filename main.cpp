@@ -90,8 +90,8 @@ QMainWindow(), settings(CONFIG_FROM)
 
     // apply and initialize settings...
 
-#ifdef TESTDATA_PATH
-    manpaths <<  TESTDATA_PATH;
+#ifdef PROJECT_TESTDATA
+    manpaths <<  PROJECT_TESTDATA;
 #endif
     if(manpaths.count() < 1)
         manpaths = settings.value("manpaths").toStringList();
@@ -115,6 +115,7 @@ QMainWindow(), settings(CONFIG_FROM)
         }
 #endif
     }
+
     settings.beginGroup("Sections");
     ui.actionSection1->setChecked(settings.value("1", ui.actionSection1->isChecked()).toBool());
     ui.actionSection2->setChecked(settings.value("2", ui.actionSection2->isChecked()).toBool());
@@ -222,7 +223,7 @@ void Main::resizeEvent(QResizeEvent *e)
 
 void Main::sync()
 {
-#ifndef TESTDATA_PATH
+#ifndef PROJECT_TESTDATA
     settings.beginGroup("Sections");
     settings.setValue("1", ui.actionSection1->isChecked());
     settings.setValue("2", ui.actionSection2->isChecked());
@@ -546,11 +547,9 @@ void Main::closeTab(int tab)
         ui.tabs->setTabsClosable(false);
 }
 
-#define tr(x)   QCoreApplication::translate("Main", x)
-
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion(VERSION);
+    QCoreApplication::setApplicationVersion(PROJECT_VERSION);
     QCoreApplication::setOrganizationName("Tycho Softworks");
     QCoreApplication::setOrganizationDomain("tychosoft.com");
     QCoreApplication::setApplicationName("Manpager");
@@ -585,7 +584,7 @@ int main(int argc, char *argv[])
     Args::add(args, {
         {Args::HelpArgument},
         {Args::VersionArgument},
-        {{"reset"}, tr("Reset Config")},
+        {{"reset"}, "Reset Config"},
     });
 
     args.process(app);
