@@ -1,19 +1,19 @@
-/**
- ** Copyright (C) 2011-2017 Tycho Softworks.
- **
- ** This program is free software: you can redistribute it and/or modify
- ** it under the terms of the GNU General Public License as published by
- ** the Free Software Foundation, either version 3 of the License, or
- ** (at your option) any later version.
- **
- ** This program is distributed in the hope that it will be useful,
- ** but WITHOUT ANY WARRANTY; without even the implied warranty of
- ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- ** GNU General Public License for more details.
- **
- ** You should have received a copy of the GNU General Public License
- ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
- **/
+/*
+ * Copyright (C) 2011-2017 Tycho Softworks.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QApplication>
 #include <QObject>
@@ -97,3 +97,20 @@ private slots:
     void openTab(int row);
 };
 	
+/*!
+ * \mainpage Manpager
+ * This is a simple manpage viewer, originally written around 2011, originally
+ * for Qt4 as part of Coastal-Qt.  It was later updated to compile on both
+ * Qt4 and 5.  This current version is a new and only slightly refactored
+ * version of the original, but for Qt5 only now.  There is further work that
+ * can be done to improve this old application, including use of threaded
+ * dispatch for the index loader.
+ */
+
+/*!
+ * The main instance of the application.  This includes a Main singleton that
+ * is both the main window and controller for the application, and the main()
+ * function for argument parsing.
+ * \file main.hpp
+ */
+

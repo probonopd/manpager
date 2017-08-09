@@ -45,7 +45,7 @@ QAbstractTableModel(parent)
                 continue;
 
             item.path = path;
-            item.mode = NONE;
+            item.compressed = NONE;
             item.id = cmap[section];
 
             QStringList list = dir.entryList(QDir::Files);
@@ -56,7 +56,7 @@ QAbstractTableModel(parent)
                     continue;
 
                 if(entry.mid(ext) == ".gz") {
-                    item.mode = GZIP;
+                    item.compressed = GZIP;
                     entry = entry.left(ext);
                     ext = entry.lastIndexOf('.');
                     if(ext < 2)
@@ -141,7 +141,7 @@ QString Index::nameAt(int row) const
     return item.name + "." + item.section;
 }
 
-const item_t& Index::itemAt(int row) const
+const Index::item_t& Index::itemAt(int row) const
 {
     return items[map[row + first]];
 }

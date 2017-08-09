@@ -84,7 +84,7 @@ QMainWindow(), settings(CONFIG_FROM)
     ui.indexView->setSelectionMode(QAbstractItemView::SingleSelection);
     ui.indexView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-//TODO: Context menu; openDocument not reliable for this
+// TODO: Context menu; openDocument not reliable for this
 //    ui.indexView->setContextMenuPolicy(Qt::CustomContextMenu);
     setContextMenuPolicy(Qt::CustomContextMenu);
 
@@ -406,7 +406,7 @@ void Main::openDocument()
     auto item = index->itemAt(pos.row());
     auto path = paths()[item.path] + QDir::separator() + "man" + item.id + QDir::separator() + name;
 
-    if(item.mode == GZIP)
+    if(item.compressed == Index::GZIP)
         path += ".gz";
 
     status(tr("opening ") + name);
@@ -464,7 +464,7 @@ void Main::openTab(int row)
 
     status(tr("loading ") + name);
 
-    if(item.mode == GZIP) {
+    if(item.compressed == Index::GZIP) {
         path += ".gz";
         QString cmd = "gunzip";
         QStringList args;
