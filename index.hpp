@@ -1,19 +1,19 @@
-/**
- ** Copyright (C) 2011-2017 Tycho Softworks.
- **
- ** This program is free software: you can redistribute it and/or modify
- ** it under the terms of the GNU General Public License as published by
- ** the Free Software Foundation, either version 3 of the License, or
- ** (at your option) any later version.
- **
- ** This program is distributed in the hope that it will be useful,
- ** but WITHOUT ANY WARRANTY; without even the implied warranty of
- ** MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- ** GNU General Public License for more details.
- **
- ** You should have received a copy of the GNU General Public License
- ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
- **/
+/*
+ * Copyright (C) 2011-2017 Tycho Softworks.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include <QAbstractTableModel>
 #include <QString>
@@ -25,22 +25,22 @@
 
 #include "compiler.hpp"
 
-typedef enum {NONE, GZIP} comp_t;
-
-typedef struct  {
-	QString name;
-	QString section;
-    comp_t mode;
-    int path;
-    char id;
-} item_t;
-
 class Index final : public QAbstractTableModel
 {
 	Q_OBJECT
     Q_DISABLE_COPY(Index)
 
 public:
+    typedef enum {NONE, GZIP} Compression;
+
+    typedef struct  {
+        QString name;
+        QString section;
+        Compression compressed;
+        int path;
+        char id;
+    } item_t;
+
     Index(QObject *parent, QObject *main, QAction *sections[], QStringList paths);
     ~Index() final;
 
@@ -73,3 +73,27 @@ private:
 signals:
     void selected(const QString& text);
 };
+
+/*!
+ * Data model for index of manual pages.
+ * \file index.hpp
+ */
+
+/*!
+ * \class Index
+ * \brief Index data model of manual page files.
+ * This is a model to load and access manual pages.  It contains a list of
+ * files, what manual section they belong to, and the ui name to show them as.
+ * \author David Sugar <tychosoft@gmail.com>
+ *
+ * \typedef Index::item_t
+ * Individual manual page item node.
+ *
+ * \enum Index::Compression
+ * The file compression used for the file being referenced.
+ *
+ * \var Index::NONE
+ * \brief No file compression used.
+ * \var Index::GZIP
+ * \brief Gzip file compression used.
+ */
