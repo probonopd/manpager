@@ -130,7 +130,7 @@ else {
         QMAKE_POST_LINK += cp -a "$$[QT_INSTALL_TRANSLATIONS]"/qt_??.qm generated/*.qm "$${TARGET}.app/Contents/Translations"
     }
     
-    QMAKE_EXTRA_TARGETS += clean extra_clean distclean
+    QMAKE_EXTRA_TARGETS += clean extra_clean
     clean.depends += extra_clean
     macx:extra_clean.commands += rm -rf $${TARGET}.app $${TARGET}.app.dSYM
     win32:extra_clean.commands += rmdir /S/Q bundled && mkdir bundled
@@ -158,8 +158,7 @@ unix:docs.commands += && cd doc/latex && make
 # clean additional testing files on distclean...
 QMAKE_EXTRA_TARGETS += distclean publishclean
 distclean.depends += publishclean
-publishclean.commands = cd $${PWD} && rm -rf testdata/*.db etc/$${ARCHIVE} testdata/certs testdata/private $testdata/*.log
-publishclean.commands += cd $${OUT_PWD} && rm -rf Archive $${ARCHIVE}-*.tar.gz $${ARCHIVE}-*.pdf $${ARCHIVE} doc Doxyfile.out
+publishclean.commands += rm -rf Archive $${ARCHIVE}-*.tar.gz $${ARCHIVE}-*.pdf $${ARCHIVE} doc Doxyfile.out
 
 RESOURCES += $${PRODUCT}.qrc
 OTHER_FILES += \
