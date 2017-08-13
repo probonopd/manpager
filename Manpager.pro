@@ -88,8 +88,8 @@ PRE_TARGETDEPS += compiler_lrelease_make_all
 
 # extra install targets based on bundle state
 !CONFIG(app_bundle) {
-    QMAKE_EXTRA_TARGETS += target locale
-    INSTALLS += target locale
+    QMAKE_EXTRA_TARGETS += target locale man1
+    INSTALLS += target locale man1
 
     target.path = "$$PREFIX/bin"
     target.depends = all
@@ -97,6 +97,10 @@ PRE_TARGETDEPS += compiler_lrelease_make_all
     locale.path = "$$PREFIX/share/translations"
     locale.depends = target
     locale.commands += $${QMAKE_INSTALL_FILE} generated/*.qm "$(INSTALL_ROOT)/$$PREFIX/share/translations"
+
+    man1.files = xdg/*.1
+    man1.path = "$$PREFIX/share/man/man1"
+    man1.depends = target
 
     unix:!macx {
         QMAKE_EXTRA_TARGETS += desktop pixmaps appdata
@@ -170,6 +174,7 @@ OTHER_FILES += \
     $${PRODUCT}.icns \
     $${PRODUCT}.ico \
     $${PRODUCT}.plist \
+    xdg/$${ARCHIVE}.1 \
     xdg/$${ARCHIVE}.png \
     xdg/$${ARCHIVE}.desktop \
     xdg/$${ARCHIVE}.appdata.xml \
