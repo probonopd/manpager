@@ -16,6 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __BUSYCURSOR_HPP__
+#define __BUSYCURSOR_HPP__
+
 #include <QObject>
 #include "compiler.hpp"
 
@@ -51,3 +54,5 @@ private:
  * That will happen in a future release making this obsolete.
  * \author David Sugar <tychosoft@gmail.com>
  */
+
+#endif

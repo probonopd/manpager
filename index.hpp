@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __INDEX_HPP__
+#define __INDEX_HPP__
+
 #include <QAbstractTableModel>
 #include <QString>
 #include <QObject>
@@ -97,3 +100,5 @@ signals:
  * \var Index::GZIP
  * \brief Gzip file compression used.
  */
+
+#endif

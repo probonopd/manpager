@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __CONFIG_HPP__
+#define __CONFIG_HPP__
+
 #include <QDebug>
 
 #if defined(Q_OS_MAC)
@@ -43,3 +46,5 @@
  * sheets are embedded in the applications qrc.
  * \file config.hpp
  */
+
+#endif

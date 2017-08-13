@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __ABOUT_HPP__
+#define __ABOUT_HPP__
+
 #include <QDialog>
 #include "compiler.hpp"
 
@@ -43,3 +46,5 @@ private slots:
  * to bring you to the link for the project on gitlab, and the tribal logo.
  * \author David Sugar <tychosoft@gmail.com>
  */
+
+#endif

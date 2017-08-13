@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __OPTIONS_HPP__
+#define __OPTIONS_HPP__
+
 #include <QDialog>
 #include <QTabWidget>
 
@@ -53,3 +56,5 @@ private:
  * sections.
  * \file options.hpp
  */
+
+#endif

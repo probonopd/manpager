@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __FIND_HPP__
+#define __FIND_HPP__
+
 #include <QDialog>
 #include <QLineEdit>
 
@@ -63,3 +66,5 @@ private slots:
  * This dialog is used to enter a string to look for in a view and then
  * find the next (or prior) occurence of it.
  */
+
+#endif

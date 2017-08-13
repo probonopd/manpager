@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __TOOLBAR_HPP__
+#define __TOOLBAR_HPP__
+
 #include <QObject>
 #include <QToolBar>
 #include <QMenu>
@@ -59,3 +62,5 @@ public slots:
  * and to manage the global search input box.
  * \file toolbar.hpp
  */
+
+#endif

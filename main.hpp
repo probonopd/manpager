@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __MAIN_HPP__
+#define __MAIN_HPP__
+
 #include <QApplication>
 #include <QObject>
 #include <QMainWindow>
@@ -114,3 +117,4 @@ private slots:
  * \file main.hpp
  */
 
+#endif

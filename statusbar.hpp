@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __STATUSBAR_HPP__
+#define __STATUSBAR_HPP__
+
 #include <QObject>
 #include <QStatusBar>
 #include <QMenu>
@@ -54,3 +57,5 @@ private:
  * shortcuts.
  * \file statusbar.hpp
  */
+
+#endif

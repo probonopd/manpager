@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __VIEWER_HPP__
+#define __VIEWER_HPP__
+
 #include <QTextEdit>
 #include <QKeyEvent>
 #include <QTableWidget>
@@ -63,4 +66,6 @@ private slots:
  * QTextView composed by parsing the man page nroff into rich text html view.
  * \file viewer.hpp
  */
+
+#endif
 

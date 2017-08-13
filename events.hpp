@@ -15,6 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#ifndef __EVENTS_HPP__
+#define __EVENTS_HPP__
+
 #include <QEvent>
 #include <QString>
 #include "compiler.hpp"
@@ -72,3 +75,5 @@ private:
  * experiment with custom events.
  * \file events.hpp
  */
+
+#endif
