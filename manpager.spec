@@ -31,5 +31,5 @@ qmake-qt5 QMAKE_CXXFLAGS+="\"%optflags\"" QMAKE_STRIP="/bin/true"
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/appdata/%{name}.appdata.xml
 %{_datadir}/translations/%{name}_*.qm
-%{_mandir}/man1/%{name}.1
+%{_mandir}/man1/%{name}.1*
 
