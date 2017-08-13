@@ -88,8 +88,8 @@ PRE_TARGETDEPS += compiler_lrelease_make_all
 
 # extra install targets based on bundle state
 !CONFIG(app_bundle) {
-    QMAKE_EXTRA_TARGETS += target locale man1
-    INSTALLS += target locale man1
+    QMAKE_EXTRA_TARGETS += target man1 locale
+    INSTALLS += target man1 locale
 
     target.path = "$$PREFIX/bin"
     target.depends = all
