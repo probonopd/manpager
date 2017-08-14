@@ -6,3 +6,9 @@ v1.0.1
 
 v1.0.2
 * Updated specfile to support fedora and rhel
+
+v1.1.0
+* Added manual page
+* Documented headers
+* Improve project layout
+
