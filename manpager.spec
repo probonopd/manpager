@@ -4,6 +4,7 @@ Version: 1.1.0
 Release: 1
 Summary: Simple system manual page viewer
 License: GPLv3+
+Group:   Applications/System
 URL:     https://gitlab.com/tychosoft/manpager
 Source:  https://pub.cherokeesofidaho.org/tarballs/%{name}-%{version}.tar.gz
 BuildRequires: qt5-qtbase-devel qt5-linguist
