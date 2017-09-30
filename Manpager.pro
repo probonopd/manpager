@@ -76,15 +76,14 @@ TRANSLATIONS += $$files(xdg/*.ts)
 
 # generate and support translations
 QMAKE_EXTRA_TARGETS += lupdate
-QMAKE_EXTRA_COMPILERS += lrelease
 lupdate.commands += $${LUPDATE} "$${PWD}/$${PRODUCT}.pro"
 system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/generated))) 
 
-lrelease.input = TRANSLATIONS
-lrelease.output = "$${OUT_PWD}"/generated/${QMAKE_FILE_BASE}.qm
-lrelease.commands += $${LRELEASE} ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
-lrelease.CONFIG += no_link
-PRE_TARGETDEPS += compiler_lrelease_make_all
+for(tr, TRANSLATIONS) {
+    tr_out=$$basename(tr)
+    tr_out=$$split(tr_out, .)
+    system($${LRELEASE} -silent $${tr} -qm "$${OUT_PWD}/generated/$$first(tr_out).qm")
+}
 
 # extra install targets based on bundle state
 !CONFIG(app_bundle) {
@@ -166,6 +165,7 @@ publishclean.commands += rm -rf Archive $${ARCHIVE}-*.tar.gz $${ARCHIVE}-*.pdf $
 
 RESOURCES += $${PRODUCT}.qrc
 OTHER_FILES += \
+    $${TRANSLATIONS} \
     $${ARCHIVE}.spec \
     CHANGELOG \
     LICENSE \
