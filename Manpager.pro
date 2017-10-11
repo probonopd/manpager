@@ -139,11 +139,11 @@ else {
     win32:extra_clean.commands += rmdir /S/Q bundled && mkdir bundled
 } 
 
-# publish support
+# publish support for release tags
 QMAKE_EXTRA_TARGETS += publish
 publish.commands += $$QMAKE_DEL_FILE *.tar.gz &&
 publish.commands += cd $${PWD} &&
-publish.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD
+publish.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION}
 linux:exists("/usr/bin/rpmbuild"):\
     publish.commands += && rm -f *.src.rpm && rpmbuild --define \"_tmppath /tmp\" --define \"_sourcedir .\" --define \"_srcrpmdir .\" --nodeps -bs $${ARCHIVE}.spec
 
