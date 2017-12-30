@@ -31,6 +31,7 @@ QDialog(view, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
 
     editor = ui.seekEdit;
     editor->setText(search);
+    editor->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     connect(ui.seekEdit, &QLineEdit::returnPressed, this, &Find::onEnter);
     connect(ui.nextButton, &QPushButton::clicked, this, &Find::onForward);
