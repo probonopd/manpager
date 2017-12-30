@@ -43,11 +43,10 @@ QDialog()
     current = -1;
     tab = tabs->count();
     tabs->addTab(this, tr("Options"));
-    tabs->setCurrentIndex(tab);
-    tabs->setTabsClosable(true);
 
     ui.list->addItems(main->paths());
     ui.list->setSelectionMode(QAbstractItemView::SingleSelection);
+    ui.list->setAttribute(Qt::WA_MacShowFocusRect, false);
 
     for(unsigned pos = 0; pos < 10; ++pos)
         Sections[pos]->setChecked(sections[pos]->isChecked());

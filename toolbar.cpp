@@ -37,11 +37,6 @@ QWidget(parent)
     bar->addWidget(this);
     bar->installEventFilter(this);
 
-#ifdef Q_OS_WIN
-    bar->setStyleSheet("QToolButton:hover {background: #60a0ff;} QToolBar {background: #60A0ff; color: white; border: #60a0ff;}");
-    if(menu)
-        menu->setStyleSheet("QMenuBar { border-bottom: 0px;}");
-#endif
     ui.setupUi(this);
     ui.searchBox->setValidator(validator);
     disableSearch();

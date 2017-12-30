@@ -22,13 +22,10 @@
 
 #if defined(Q_OS_MAC)
 #define CONFIG_FROM "tychosoft.com", "manpager"
-#define CSS_STYLE ":/styles/macosx.css"
 #elif defined(Q_OS_WIN)
 #define CONFIG_FROM "Tycho Softworks", "Manpager"
-#define CSS_STYLE ":/styles/windows.css"
 #else
 #define CONFIG_FROM "tychosoft.com", "manpager"
-#define CSS_STYLE ":/styles/default.css"
 #endif
 
 #if defined(Q_OS_WIN)

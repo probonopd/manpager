@@ -1,0 +1,73 @@
+QComboBox#searchBox {
+    border: 1px solid #c0c0c0;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 0px;
+    padding: 2px;
+    margin: 0px;
+    margin-right: 8px;
+    margin-bottom: 1px;
+    padding-left: 0px;
+}
+
+QComboBox#searchBox::drop-down {
+    border-width: 1px;
+}
+
+QComboBox#searchBox::down-arrow {
+    image:url(:/images/downarrow.png)
+}
+
+QLabel#searchLabel {
+    border: 1px solid #c0c0c0;
+    border-right: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 4px;
+    padding-right: 0px;
+    margin: 0px;
+    background: white;
+}
+
+QToolBar#toolBar {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    background: white;
+}
+
+QMainWindow, QGroupBox, QDialog, QStatusBar, QTabWidget::pane {
+    background: white;
+}
+
+QTabBar::close-button {
+    image: url(:/images/close.png);
+}
+
+QWidget#indexTab, QTableView#indexView, QTextEdit {
+    background: white;
+    border: 0px;
+    margin: 1px;
+}
+
+QTableView#indexView QHeaderView::section {
+    background: white;
+}
+
+QDialog {
+    border: 1px solid gray;
+}
+
+QDialog#Options {
+    margin: 1px;
+    border: 0px;
+}
+
+QListWidget#list {
+    border: 0px;
+    margin: 1px;
+    background: white;
+    border-right: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
