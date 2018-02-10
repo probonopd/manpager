@@ -24,7 +24,7 @@ unix {
 
     exists(/usr/bin/lrelease-qt5) {
         LRELEASE = lrelease-qt5
-        LUPDATE = lupdate=qt5
+        LUPDATE = lupdate-qt5
     }
     else {
         LRELEASE = lrelease

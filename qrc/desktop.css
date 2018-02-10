@@ -36,38 +36,36 @@ QToolBar#toolBar {
     background: white;
 }
 
-QMainWindow, QGroupBox, QDialog, QStatusBar, QTabWidget::pane {
+QDialog#Options {
+    margin: 1px;
+    border: 1px solid lightgray;
+}
+
+QListWidget#list {
+    margin-top: -1;
+    margin-left: -1;
+    border: 0px;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+QLineEdit {
+    background: white;
+    padding: 1px;
+}
+
+QGroupBox {
+    background: white;
+    font-weight: bold;
+}
+
+QDialog, QMainWindow, QStatusBar, QListView, QStackedWidget, QTabWidget::pane {
     background: white;
 }
 
 QTabBar::close-button {
     image: url(:/images/close.png);
-}
-
-QWidget#indexTab, QTableView#indexView, QTextEdit {
-    background: white;
-    border: 0px;
-    margin: 1px;
-}
-
-QTableView#indexView QHeaderView::section {
-    background: white;
-}
-
-QDialog {
-    border: 1px solid gray;
-}
-
-QDialog#Options {
-    margin: 1px;
-    border: 0px;
-}
-
-QListWidget#list {
-    border: 0px;
-    margin: 1px;
-    background: white;
-    border-right: 1px solid #e0e0e0;
-    border-bottom: 1px solid #e0e0e0;
+    height: 12px;
+    width: 12px;
 }
 
