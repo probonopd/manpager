@@ -28,7 +28,7 @@
   <property name="windowTitle">
    <string notr="true">Dialog</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_3">
+  <layout class="QVBoxLayout" name="verticalLayout_33">
    <property name="leftMargin">
     <number>0</number>
    </property>

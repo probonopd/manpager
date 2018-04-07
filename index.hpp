@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __INDEX_HPP__
-#define __INDEX_HPP__
+#ifndef INDEX_HPP_
+#define INDEX_HPP_
 
 #include <QAbstractTableModel>
 #include <QString>
@@ -25,6 +25,7 @@
 #include <QList>
 #include <QStringList>
 #include <QAction>
+#include <QThread>
 
 #include "compiler.hpp"
 
@@ -34,18 +35,22 @@ class Index final : public QAbstractTableModel
     Q_DISABLE_COPY(Index)
 
 public:
-    typedef enum {NONE, GZIP} Compression;
+    enum Compression {NONE, GZIP};
 
-    typedef struct  {
+    using item_t = struct  {
         QString name;
         QString section;
         Compression compressed;
         int path;
         char id;
-    } item_t;
+    };
 
-    Index(QObject *parent, QObject *main, QAction *sections[], QStringList paths);
+    Index(QAction *sections[], const QStringList &paths);
     ~Index() final;
+
+    void start() {
+        thread()->start();
+    }
 
     QString nameAt(int row) const;
     const item_t& itemAt(int row) const;
@@ -55,6 +60,8 @@ public:
     void selectAt(int pos, const QString& name);
 
 private:
+    QAction **savedSections;
+    QStringList savedPaths;
 	QList<item_t> items;
     bool triggered;
     int rows, first, last;
@@ -68,6 +75,7 @@ private:
         return items[map[pos]].name.left(len);
     }
 
+    void scan();
     int rowCount(const QModelIndex& parent) const final;
     int columnCount(const QModelIndex& parent) const final;
     QVariant data(const QModelIndex &index, int role) const final;
@@ -75,6 +83,9 @@ private:
 
 signals:
     void selected(const QString& text);
+    void updateStatus(const QString& text);
+    void updateIndex(Index *result);
+    void finished();
 };
 
 /*!

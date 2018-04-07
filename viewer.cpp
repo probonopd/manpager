@@ -27,7 +27,7 @@
 static void getargs(char *text, char **result)
 {
     unsigned count = 0;
-    char *out = NULL;
+    char *out = nullptr;
 
     // lower case dot commands...
 
@@ -43,7 +43,7 @@ static void getargs(char *text, char **result)
             ++text;
 
     if(*text == 0) {
-        result[0] = NULL;
+        result[0] = nullptr;
         return;
     }
 
@@ -77,7 +77,7 @@ static void getargs(char *text, char **result)
         out[1] = 0;
     }
     result[count++] = out;
-    result[count] = NULL;
+    result[count] = nullptr;
 }
 
 Viewer::Viewer(QTabWidget *tabs, QIODevice& input, const QString& title) :
@@ -97,7 +97,7 @@ QTextEdit()
 
     while((len = input.readLine(buf, sizeof(buf))) > 0) {    
         bold = underline = italic = false;
-        argv[0] = argv[1] = NULL;
+        argv[0] = argv[1] = nullptr;
         memset(format, 0, sizeof(format));
         argc = 0;
 
@@ -152,7 +152,7 @@ QTextEdit()
 
         if(!strcmp(buf, ".tp")) {
             text = text + "</p><p>\n";
-            argv[0] = NULL;
+            argv[0] = nullptr;
             continue;
         }
 
@@ -190,7 +190,7 @@ body:
         if(!indent)
             continue;
 
-        while((body = argv[argc]) != NULL) {
+        while((body = argv[argc]) != nullptr) {
             if(pre) {
                 text = text + body;
                 ++argc;
@@ -337,7 +337,7 @@ body:
     }
 
     findText = "";
-    findBy = 0;
+    findBy =nullptr;
     find = nullptr;
 
     setReadOnly(true);
@@ -377,7 +377,7 @@ void Viewer::closeFind(QObject *object)
 void Viewer::setDirection(bool forward, bool sensitivity)
 {
     if(forward)
-        findBy = 0;
+        findBy = nullptr;
     else
         findBy = QTextDocument::FindBackward;
 

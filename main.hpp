@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __MAIN_HPP__
-#define __MAIN_HPP__
+#ifndef MAIN_HPP_
+#define MAIN_HPP_
 
 #include <QApplication>
 #include <QObject>
@@ -65,11 +65,7 @@ private:
 
     static Main *Instance;
 
-    bool event(QEvent *evt) final;
     void resizeEvent(QResizeEvent *e) final;
-
-    void status(const QString& text);
-    void error(const QString& text);
 
     void load(int row);
     void sync();
@@ -79,12 +75,15 @@ signals:
     void updated();
 
 public slots:
+    void status(const QString& text);
+    void error(const QString& text);
     void closeTab(int tab);
     void changeTab(int tab);
     void searchIndex(const QString& entry);
     void openNamed(const QString& text);
     void searchText();
     void enableFind();
+    void updateIndex(Index *ind);
 
 private slots:
     void about();

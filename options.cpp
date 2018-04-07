@@ -62,9 +62,7 @@ QDialog()
     connect(ui.list, &QListWidget::currentRowChanged, this, &Options::selected);
 }
 
-Options::~Options()
-{
-}
+Options::~Options() = default;
 
 void Options::selected(int row)
 {
@@ -115,28 +113,28 @@ void Options::accept()
     main->closeTab(tab);
 }
 
-void Options::movePathUp(void)
+void Options::movePathUp()
 {
     QListWidgetItem *item = ui.list->takeItem(current);
     ui.list->insertItem(--current, item);
     ++current;
 }
 
-void Options::movePathDown(void)
+void Options::movePathDown()
 {
     QListWidgetItem *item = ui.list->takeItem(current);
     ui.list->insertItem(++current, item);
     --current;
 }
 
-void Options::removePath(void)
+void Options::removePath()
 {
     ui.list->takeItem(current);
     if(current >= ui.list->count())
         selected(-1);
 }
 
-void Options::appendPath(void)
+void Options::appendPath()
 {
     auto path = QFileDialog::getExistingDirectory(this, tr("Directory"), "/");
 

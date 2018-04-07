@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __ABOUT_HPP__
-#define __ABOUT_HPP__
+#ifndef ABOUT_HPP_
+#define ABOUT_HPP_
 
 #include <QDialog>
 #include "compiler.hpp"

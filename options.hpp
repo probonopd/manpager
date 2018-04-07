@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __OPTIONS_HPP__
-#define __OPTIONS_HPP__
+#ifndef OPTIONS_HPP_
+#define OPTIONS_HPP_
 
 #include <QDialog>
 #include <QTabWidget>
@@ -39,12 +39,12 @@ public:
 
 private slots:
     void selected(int row);
-    void cancel(void);
-    void accept(void) override;
-    void movePathUp(void);
-    void movePathDown(void);
-    void removePath(void);
-    void appendPath(void);
+    void cancel();
+    void accept() override;
+    void movePathUp();
+    void movePathDown();
+    void removePath();
+    void appendPath();
 
 private:
     int tab, current;

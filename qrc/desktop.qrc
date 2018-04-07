@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>manpager.png</file>
+        <file>downarrow.png</file>
+        <file>searchicon.png</file>
+		<file>close.png</file>
+        <file>tribal.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file>refresh.png</file>
+        <file>refresh@2x.png</file>
+        <file>settings.png</file>
+        <file>settings@2x.png</file>
+        <file>info.png</file>
+        <file>info@2x.png</file>
+        <file>clear.png</file>
+        <file>clear@2x.png</file>
+        <file>exit.png</file>
+        <file>exit@2x.png</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file>desktop.css</file>
+    </qresource>
+</RCC>

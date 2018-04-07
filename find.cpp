@@ -42,7 +42,7 @@ QDialog(view, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
     show();
 }
 
-void Find::onEnter(void)
+void Find::onEnter()
 {
     if(editor->text().isEmpty()) {
         emit updateSearch("");
@@ -53,7 +53,7 @@ void Find::onEnter(void)
     close();
 }
 
-void Find::onForward(void)
+void Find::onForward()
 {
     auto *view = static_cast<Viewer *>(parent());
     auto seeking = editor->text();
@@ -74,7 +74,7 @@ void Find::onForward(void)
     emit updateSearch(seeking);
 }
 
-void Find::onBackward(void)
+void Find::onBackward()
 {
     auto *view = static_cast<Viewer *>(parent());
     auto seeking = editor->text();

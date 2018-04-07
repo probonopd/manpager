@@ -16,32 +16,53 @@
  **/
 
 #include "index.hpp"
-#include "events.hpp"
 #include <QApplication>
 #include <QStringList>
 #include <QMap>
 #include <QDir>
+#include <QDebug>
+#include <QThread>
 
 static const char *cmap = "12345678ln";
 static QStringList mandirs = QStringList() << "man1" << "man2" << "man3" << "man4" << "man5" << "man6" << "man7" << "man8" << "manl" << "mann";
 
-Index::Index(QObject *parent, QObject *main, QAction *sections[], QStringList paths) :
-QAbstractTableModel(parent)
-{
-	int ext;
-	item_t item;
+Index::Index(QAction *sections[], const QStringList& paths) :
+QAbstractTableModel()
+{   
 	map = nullptr;
     rows = first = last = 0;
+    savedSections = sections;
+    savedPaths = paths;
+
+    auto thread = new QThread();
+    moveToThread(thread);
+
+    connect(this, &Index::finished, thread, &QThread::quit);
+    connect(thread, &QThread::started, this, &Index::scan);
+    connect(thread, &QThread::finished, thread, &QThread::deleteLater);
+}
+
+Index::~Index()
+{
+    if(map) {
+        delete[] map;
+        map = nullptr;
+    }
+}
+
+void Index::scan()
+{
     QMap<QString, int> byname;
+    item_t item;
+    int ext;
 
     for(int section = 0; section < 10; ++section) {
-        StatusEvent ev(tr("loading ") + cmap[section] + "...");
-        QApplication::sendEvent(main, &ev);
-        for(int path = 0; path < paths.size(); ++path) {
-            QDir dir(paths[path] + QDir::separator() + mandirs[section]);
+        emit updateStatus(tr("loading ") + cmap[section] + "...");
+        for(int path = 0; path < savedPaths.size(); ++path) {
+            QDir dir(savedPaths[path] + QDir::separator() + mandirs[section]);
             if(!dir.exists())
                 continue;
-            if(!sections[section]->isChecked())
+            if(!savedSections[section]->isChecked())
                 continue;
 
             item.path = path;
@@ -73,22 +94,15 @@ QAbstractTableModel(parent)
         }
     }
 
-    if(!rows)
-        return;
+    if(rows) {
+        map = new int[rows];
+        foreach(int value, byname)
+            map[last++] = value;
 
-    map = new int[rows];
-    foreach(int value, byname)
-        map[last++] = value;
-
-    rows = last;
-}
-
-Index::~Index()
-{
-	if(map) {
-        delete[] map;
-		map = nullptr;
-	}
+        rows = last;
+    }
+    emit updateIndex(this);
+    emit finished();
 }
 
 int Index::rowCount(const QModelIndex& parent) const

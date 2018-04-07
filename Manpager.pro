@@ -1,9 +1,8 @@
-PRODUCT = Manpager
 TEMPLATE = app
-VERSION = 1.1.0
+VERSION = 1.1.1
 COPYRIGHT = 2017
 ARCHIVE = manpager
-TARGET = manpager
+unix:!macx:TARGET = manpager
 
 # basic compile and link config
 CONFIG += c++11 warning widgets gui core
@@ -11,9 +10,8 @@ QT += widgets
 
 # build type specific options
 CONFIG(release,release|debug):DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
-else:!CONFIG(no-testdata) {
-    CONFIG(userdata):DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/userdata\\\"
-    else:DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/testdata\\\"
+else {
+    DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/testdata\\\"
     CONFIG -= app_bundle
 }
 
@@ -36,9 +34,8 @@ macx {
     equals(PREFIX, "/usr/local"):CONFIG -= app_bundle
     CONFIG(app_bundle) {
         CONFIG(release, release|debug):CONFIG += separate_debug_info force_debug_info
-        QMAKE_INFO_PLIST = "$${PRODUCT}.plist"
-        TARGET = "$${PRODUCT}"
-        ICON = "$${PRODUCT}.icns"
+        QMAKE_INFO_PLIST = "$${TARGET}.plist"
+        ICON = "$${TARGET}.icns"
         system(rm -rf "$${OUT_PWD}/$${TARGET}.app")
     }
 }
@@ -51,11 +48,10 @@ win32 {
     LRELEASE = lrelease
     LUPDATE = lupdate
     DEFINES += WIN32_LEAN_AND_MEAN
-    TARGET = "$${PRODUCT}"
-    RC_ICONS += "$${PRODUCT}.ico"
+    RC_ICONS += "$${TARGET}.ico"
     system(rmdir /S/Q $$shell_path($${OUT_PWD}/bundled) 2>nul)
     system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/bundled))) 
-    system(del /q $$shell_path($${OUT_PWD}/$${PRODUCT}.exe) 2>nul)
+    system(del /q $$shell_path($${OUT_PWD}/$${TARGET}.exe) 2>nul)
 }
 
 # global defines
@@ -76,7 +72,7 @@ TRANSLATIONS += $$files(xdg/*.ts)
 
 # generate and support translations
 QMAKE_EXTRA_TARGETS += lupdate
-lupdate.commands += $${LUPDATE} "$${PWD}/$${PRODUCT}.pro"
+lupdate.commands += $${LUPDATE} "$${PWD}/$${TARGET}.pro"
 system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/generated))) 
 
 for(tr, TRANSLATIONS) {
@@ -129,7 +125,7 @@ else {
     macx:CONFIG(release, release|debug): {
         QMAKE_POST_LINK += mkdir -p "$${TARGET}.app/Contents/Translations" &&
         QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0 -always-overwrite &&
-        QMAKE_POST_LINK += $${LRELEASE} -silent "$${PWD}/$${PRODUCT}.pro" &&
+        QMAKE_POST_LINK += $${LRELEASE} -silent "$${PWD}/$${TARGET}.pro" &&
         QMAKE_POST_LINK += cp -a "$$[QT_INSTALL_TRANSLATIONS]"/qt_??.qm generated/*.qm "$${TARGET}.app/Contents/Translations"
     }
     
@@ -163,7 +159,7 @@ QMAKE_EXTRA_TARGETS += distclean publishclean
 distclean.depends += publishclean
 publishclean.commands += rm -rf Archive $${ARCHIVE}-*.tar.gz $${ARCHIVE}-*.pdf $${ARCHIVE} doc Doxyfile.out
 
-RESOURCES += $${PRODUCT}.qrc
+RESOURCES += qrc/desktop.qrc
 OTHER_FILES += \
     $${TRANSLATIONS} \
     $${ARCHIVE}.spec \
@@ -171,9 +167,9 @@ OTHER_FILES += \
     LICENSE \
     README.md \
     CONTRIBUTING.md \
-    $${PRODUCT}.icns \
-    $${PRODUCT}.ico \
-    $${PRODUCT}.plist \
+    $${TARGET}.icns \
+    $${TARGET}.ico \
+    $${TARGET}.plist \
     xdg/$${ARCHIVE}.1 \
     xdg/$${ARCHIVE}.png \
     xdg/$${ARCHIVE}.desktop \
