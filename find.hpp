@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __FIND_HPP__
-#define __FIND_HPP__
+#ifndef FIND_HPP_
+#define FIND_HPP_
 
 #include <QDialog>
 #include <QLineEdit>
@@ -50,9 +50,9 @@ signals:
     void updateSearch(const QString& text);
 
 private slots:
-    void onForward(void);
-    void onBackward(void);
-    void onEnter(void);
+    void onForward();
+    void onBackward();
+    void onEnter();
 };
 
 /*!

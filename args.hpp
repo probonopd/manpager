@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __ARGS_HPP__
-#define __ARGS_HPP__
+#ifndef ARGS_HPP_
+#define ARGS_HPP_
 
 #include <QCommandLineParser>
 #include <QStringList>

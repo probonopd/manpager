@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __STATUSBAR_HPP__
-#define __STATUSBAR_HPP__
+#ifndef STATUSBAR_HPP_
+#define STATUSBAR_HPP_
 
 #include <QObject>
 #include <QStatusBar>

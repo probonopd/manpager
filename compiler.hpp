@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef	__COMPILER_HPP__
-#define __COMPILER_HPP__
+#ifndef	COMPILER_HPP_
+#define COMPILER_HPP_
 
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wpadded"

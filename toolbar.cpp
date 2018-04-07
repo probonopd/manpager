@@ -48,9 +48,9 @@ QWidget(parent)
 
 bool Toolbar::eventFilter(QObject *object, QEvent *event)
 {
-    QMouseEvent *mouse = static_cast<QMouseEvent *>(event);
+    auto mouse = static_cast<QMouseEvent *>(event);
+    auto window = static_cast<QWidget *>(Main::instance());
     QPoint pos;
-    QWidget *window = static_cast<QWidget *>(Main::instance());
 
     switch(event->type()) {
     case QEvent::MouseMove:

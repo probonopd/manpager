@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __VIEWER_HPP__
-#define __VIEWER_HPP__
+#ifndef VIEWER_HPP_
+#define VIEWER_HPP_
 
 #include <QTextEdit>
 #include <QKeyEvent>
@@ -50,7 +50,7 @@ private:
     Find *find;
     int tabPosition;
 
-    void searchText(void);
+    void searchText();
 
 public slots:
     void activateFind();

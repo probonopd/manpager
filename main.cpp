@@ -16,9 +16,7 @@
  **/
 
 #include "main.hpp"
-#include "events.hpp"
 #include "config.hpp"
-#include "busycursor.hpp"
 #include "about.hpp"
 #include "viewer.hpp"
 #include "args.hpp"
@@ -192,22 +190,6 @@ void Main::applyOptions(QStringList& list, QCheckBox *sections[])
     emit updated();
 }
 
-bool Main::event(QEvent *evt)
-{
-    auto eep = static_cast<ErrorEvent *>(evt);
-    auto sep = static_cast<StatusEvent *>(evt);
-
-    switch(static_cast<events_t>(evt->type())) {
-    case ERROR_EVENT:
-        error(eep->text());
-        return true;
-    case STATUS_EVENT:
-        status(sep->text());
-        return true;
-    }
-    return QMainWindow::event(evt);
-}
-
 void Main::resizeEvent(QResizeEvent *e)
 {
     QMainWindow::resizeEvent(e);
@@ -245,7 +227,6 @@ void Main::status(const QString& text)
     ui.statusbar->update();
     ui.statusbar->repaint();
     ui.statusbar->update();
-    update();
 }
 
 void Main::error(const QString& text)
@@ -254,7 +235,6 @@ void Main::error(const QString& text)
     ui.statusbar->showMessage(text);
     ui.statusbar->update();
     ui.statusbar->repaint();
-    update();
 }
 
 void Main::openContext(const QPoint& pos)
@@ -291,7 +271,7 @@ void Main::showContextMenu(const QPoint& pos)
     m.exec(mapToGlobal(pos));
 }
 
-void Main::about(void)
+void Main::about()
 {
     About info(this);
     info.exec();
@@ -313,25 +293,35 @@ void Main::reloadIndex()
 {    
     toolbar->disableSearch();
     status(tr("loading..."));
-    this->update();
-    BusyCursor busy;
 
-    ui.indexView->setModel(NULL);
+    ui.indexView->setModel(nullptr);
     ui.tabs->setCurrentIndex(0);
 
-    if(index)
+    if(index) {
         delete index;
+        index = nullptr;
+    }
 
-    index = new Index(ui.indexView, this, manSections, paths());
-    connect(index, &Index::selected, toolbar, &Toolbar::selectedIndex);
+    QApplication::setOverrideCursor(QCursor(Qt::WaitCursor));
+    setEnabled(false);
+    auto ind = new Index(manSections, paths());
+    connect(ind, &Index::updateStatus, this, &Main::status);
+    connect(ind, &Index::updateIndex, this, &Main::updateIndex);
 
-    ui.indexView->setModel(index);
+    ind->start();
+}
+
+void Main::updateIndex(Index *ind)
+{
+    index = ind;
+    ui.indexView->setModel(ind);
     ui.indexView->setEnabled(true);
     ui.indexView->selectRow(0);
-
     toolbar->enableSearch();
+    setEnabled(true);
     status(tr("ready"));
-    this->update();
+    connect(ind, &Index::selected, toolbar, &Toolbar::selectedIndex);
+    QApplication::restoreOverrideCursor();
     emit resized();
 }
 
@@ -367,7 +357,7 @@ void Main::searchIndex(const QString& entry)
 
     pos = index->find(text);
 
-    ui.indexView->setModel(NULL);
+    ui.indexView->setModel(nullptr);
 
     if(text.length() < 1) {
         status(tr("ready"));
@@ -411,7 +401,7 @@ void Main::openDocument()
     error(tr("failed to open ") + name);
 }
 
-void Main::openViewer(void)
+void Main::openViewer()
 {
     openAt(ui.indexView->currentIndex());
 }
@@ -485,7 +475,7 @@ void Main::openTab(int row)
 }
 
 
-void Main::clearTabs(void)
+void Main::clearTabs()
 {
     closeTab(0);
 }
@@ -548,7 +538,7 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     QCommandLineParser args;
-    Q_INIT_RESOURCE(Manpager);
+    Q_INIT_RESOURCE(desktop);
 
 #if defined(Q_OS_MAC)
     localize.load(QLocale::system().name(), "manpager", "_", 

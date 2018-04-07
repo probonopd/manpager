@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __TOOLBAR_HPP__
-#define __TOOLBAR_HPP__
+#ifndef TOOLBAR_HPP_
+#define TOOLBAR_HPP_
 
 #include <QObject>
 #include <QToolBar>

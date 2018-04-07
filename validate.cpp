@@ -17,7 +17,7 @@
 
 #include <QApplication>
 #include "validate.hpp"
-#include "events.hpp"
+#include "main.hpp"
 
 ValidateIndex::ValidateIndex(QObject *parent) :
 QValidator(parent)
@@ -49,8 +49,8 @@ QValidator::State ValidateIndex::validate(QString& input, int& pos) const
     return Acceptable;
 
 invalid:
-    ErrorEvent ev(tr("Invalid input ") + QChar('\"') + input + QChar('\"'));
-    QApplication::sendEvent(parent(), &ev);
+    Main *main = Main::instance();
+    main->error(tr("Invalid input ") + QChar('\"') + input + QChar('\"'));
     return Invalid;
 }
 

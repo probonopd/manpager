@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CONFIG_HPP__
-#define __CONFIG_HPP__
+#ifndef CONFIG_HPP_
+#define CONFIG_HPP_
 
 #include <QDebug>
 

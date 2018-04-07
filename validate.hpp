@@ -15,8 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __VALIDATE_HPP__
-#define __VALIDATE_HPP__
+#ifndef VALIDATE_HPP_
+#define VALIDATE_HPP_
 
 #include <QValidator>
 #include <QtWidgets>
