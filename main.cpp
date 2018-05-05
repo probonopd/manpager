@@ -553,7 +553,12 @@ int main(int argc, char *argv[])
     if(!localize.isEmpty())
         app.installTranslator(&localize);
 
+#ifdef Q_OS_MAC
+    QFile style(":/styles/macos.css");
+#else
     QFile style(":/styles/desktop.css");
+#endif
+
     if(style.exists()) {
         style.open(QFile::ReadOnly);
         QString css = QLatin1String(style.readAll());

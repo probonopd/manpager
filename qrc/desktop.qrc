@@ -4,6 +4,7 @@
         <file>downarrow.png</file>
         <file>searchicon.png</file>
 		<file>close.png</file>
+	    <file>kill.png</file>
         <file>tribal.png</file>
     </qresource>
     <qresource prefix="/icons">
@@ -20,5 +21,6 @@
     </qresource>
     <qresource prefix="/styles">
         <file>desktop.css</file>
+		<file>macos.css</file>
     </qresource>
 </RCC>
