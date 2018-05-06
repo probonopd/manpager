@@ -63,6 +63,19 @@ QDialog, QMainWindow, QStatusBar, QListView, QStackedWidget, QTabWidget::pane {
     background: white;
 }
 
+QTabBar::tab {
+    border: 1px solid gray;
+    border-bottom: 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 2px 8px 2px 8px;
+    background: #e0e0e0;
+}
+
+QTabBar::tab::selected {
+    background: white;
+}
+
 QTabBar::close-button {
     image: url(:/images/close.png);
     height: 12px;
