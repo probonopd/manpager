@@ -79,6 +79,14 @@ for(tr, TRANSLATIONS) {
     system($${LRELEASE} -silent $${tr} -qm "$${OUT_PWD}/generated/$$first(tr_out).qm")
 }
 
+# source publish
+unix {
+    QMAKE_EXTRA_TARGETS += source
+    source.commands += $$QMAKE_DEL_FILE *.tar.gz &&
+    source.commands += cd $${PWD} &&
+    source.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION} 2>/dev/null || git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD 
+}
+
 # extra install targets based on bundle state
 unix:!CONFIG(app_bundle) {
     QMAKE_EXTRA_TARGETS += target locale man1
@@ -111,6 +119,9 @@ unix:!CONFIG(app_bundle) {
         appdata.path = "$$PREFIX/share/appdata"
         appdata.depends = target
     }
+    exists(debian/Debian.pri):include(debian/Debian.pri)
+    exists(redhat/Redhat.pri):include(redhat/Redhat.pri)
+
 }
 else {
     win32:CONFIG(release, release|debug) {
