@@ -24,7 +24,7 @@
 static Ui::About ui;
 
 About::About(QWidget *parent) :
-QDialog(parent, Qt::Dialog|Qt::WindowTitleHint|Qt::CustomizeWindowHint|Qt::MSWindowsFixedSizeDialogHint)
+QDialog(parent, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
 {
     ui.setupUi(static_cast<QDialog*>(this));
     ui.labelVersion->setText(tr("Version: ") + PROJECT_VERSION);
