@@ -12,6 +12,12 @@ doc/
 *.o
 *.obj
 *.rpm
+*.dmg
+*.deb
+*.dsc
+*.changes
+*.buildinfo
+*.upload
 
 *.tar.gz
 *.zip
