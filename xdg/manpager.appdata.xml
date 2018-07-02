@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application>
-    <id type="desktop">manpager.desktop</id>
+<component type="desktop">
+    <id>manpager.desktop</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0+</project_license>
     <name>Manpager</name>
-    <license>GPL-3.0+</license>
+	<summary>Simple system manual page viewer</summary>
     <description>
-        <p>A simple system manual page viewer</p>
+        <p> This is a simple application that lets you search for and view system manual pages formatted for normal output.  The manpage viewer also lets you search for content within manual pages using the F3 key.  Probably the closest equivalent is something like xman, but this offers a more complete and modern user interface.</p>
     </description>
     <screenshots>
         <screenshot type="default">
-            <image>https://pub.cherokeesofidaho.org/screenshots/manpager.png</image>
+            <image>https://www.cherokeesofidaho.org/public/screenshots/manpager.png</image>
         </screenshot>
     </screenshots>
-    <url type="homepage">https://www.cherokeesofidaho.org</url>
-    <updatecontact>tychosoft@gmail.com</updatecontact>
-</application>
+    <url type="homepage">https://www.gitlab.com/tychosoft/manpager</url>
+    <update_contact>tychosoft@gmail.com</update_contact>
+</component>

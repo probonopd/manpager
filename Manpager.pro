@@ -116,7 +116,7 @@ unix:!CONFIG(app_bundle) {
         pixmaps.depends = target
 
         appdata.files = xdg/*.appdata.xml
-        appdata.path = "$$PREFIX/share/appdata"
+        appdata.path = "$$PREFIX/share/metainfo"
         appdata.depends = target
     }
     exists(debian/Debian.pri):include(debian/Debian.pri)
