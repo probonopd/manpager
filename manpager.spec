@@ -7,7 +7,7 @@ License: GPLv3+
 Group:   Applications/System
 URL:     https://gitlab.com/tychosoft/manpager
 Source:  https://www.cherokeesofidaho.org/public/tarballs/%{name}-%{version}.tar.gz
-BuildRequires: qt5-qtbase-devel qt5-linguist
+BuildRequires: libqt5-qtbase-devel libqt5-linguist-devel
 BuildRequires:  gcc-c++
 
 %description
@@ -18,7 +18,7 @@ more modern version of xman.
 %setup -q
 
 %build
-qmake-qt5 QMAKE_CXXFLAGS+="\"%optflags\"" QMAKE_STRIP="/bin/true"
+qmake-qt5 QMAKE_CXXFLAGS+="\"%optflags\"" QMAKE_STRIP="%__strip"
 %{__make} %{?_smp_mflags}
 
 %install
