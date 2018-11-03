@@ -1,0 +1,18 @@
+stages:
+- build
+
+# Build debug version after each commit or merge requests    
+build:
+  image: tychosoft/gitlabqt:build
+  stage: build
+  script:
+    - qmake | tee qmake.log
+    - make | tee make.log
+  tags:
+    - docker
+  artifacts:
+    expire_in: 2 weeks
+    when: always
+    paths:
+      - ./*.log
+
