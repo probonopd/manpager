@@ -26,8 +26,7 @@
 static const char *cmap = "12345678ln";
 static QStringList mandirs = QStringList() << "man1" << "man2" << "man3" << "man4" << "man5" << "man6" << "man7" << "man8" << "manl" << "mann";
 
-Index::Index(QAction *sections[], const QStringList& paths) :
-QAbstractTableModel()
+Index::Index(QAction *sections[], const QStringList& paths)
 {   
 	map = nullptr;
     rows = first = last = 0;

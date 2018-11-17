@@ -101,7 +101,6 @@ void Toolbar::enableSearch()
 {
     ui.searchBox->setEnabled(true);
     ui.searchBox->setFocus();
-    ui.searchBox->repaint();
 }
 
 void Toolbar::disableSearch()

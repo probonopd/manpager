@@ -79,6 +79,10 @@ public slots:
     void error(const QString& text);
     void closeTab(int tab);
     void changeTab(int tab);
+    void closeCurrent();
+    void changeSettings();
+    void reloadIndex();
+    void clearTabs();
     void searchIndex(const QString& entry);
     void openNamed(const QString& text);
     void searchText();
@@ -87,12 +91,9 @@ public slots:
 
 private slots:
     void about();
-    void clearTabs();
-    void changeSettings(bool checked);
     void changeColumns();
     void openContext(const QPoint& pos);
     void showContextMenu(const QPoint& pos);
-    void reloadIndex();
     void openViewer();
     void openDocument();
     void openAt(const QModelIndex& cursor);

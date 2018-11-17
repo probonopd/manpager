@@ -31,7 +31,7 @@ static Viewer *currentView = nullptr;
 Main *Main::Instance = nullptr;
 
 Main::Main(bool reset) :
-QMainWindow(), settings(CONFIG_FROM)
+settings(CONFIG_FROM)
 {
     Q_ASSERT(Instance == nullptr);
 
@@ -50,6 +50,7 @@ QMainWindow(), settings(CONFIG_FROM)
     ui.setupUi(static_cast<QMainWindow *>(this));
     toolbar = new Toolbar(this, ui.toolBar);
     statusbar = new Statusbar(ui.centralwidget, ui.statusbar);
+    statusbar->enableSettings();
     status(tr("loading..."));    
 
     manSections[0] = ui.actionSection1;
@@ -333,10 +334,8 @@ void Main::changeColumns()
     ui.indexView->update();
 }
 
-void Main::changeSettings(bool checked)
+void Main::changeSettings()
 {
-    Q_UNUSED(checked);
-
     if(!options)
         options = new Options(ui.tabs, manSections);
 
@@ -474,7 +473,6 @@ void Main::openTab(int row)
     status(tr("loaded ") + name);
 }
 
-
 void Main::clearTabs()
 {
     closeTab(0);
@@ -485,6 +483,11 @@ void Main::changeTab(int tab)
     auto priorView = currentView;
 
     qDebug() << "CHANGED " << tab;
+    if(options && options->tabIndex() == tab)
+        statusbar->disableSettings();
+    else
+        statusbar->enableSettings();
+
     if(tab == 0 || (options && options->tabIndex() == tab)) {
         statusbar->disableSearch();
         currentView = nullptr;
@@ -497,6 +500,11 @@ void Main::changeTab(int tab)
         priorView->release();
 }
 
+void Main::closeCurrent()
+{
+    closeTab(ui.tabs->currentIndex());
+}
+
 void Main::closeTab(int tab)
 {
     // close of index tab actually closes all other open manpages
@@ -504,6 +512,11 @@ void Main::closeTab(int tab)
         int count = ui.tabs->count();
         for(tab = 1; tab < count; ++tab)
             closeTab(1);
+        toolbar->enableSearch();
+        if(options) {
+            options->deleteLater();
+            options = nullptr;
+        }
         return;
     }
 
@@ -511,6 +524,7 @@ void Main::closeTab(int tab)
         ui.tabs->removeTab(tab);
         options->deleteLater();
         options = nullptr;
+        statusbar->enableSettings();
     }
     else {
         auto view = static_cast<Viewer *>(ui.tabs->widget(tab));
@@ -551,7 +565,7 @@ int main(int argc, char *argv[])
         Args::exePath("../share/translations"));
 #endif
     if(!localize.isEmpty())
-        app.installTranslator(&localize);
+        QApplication::installTranslator(&localize);
 
 #ifdef Q_OS_MAC
     QFile style(":/styles/macos.css");
@@ -576,7 +590,7 @@ int main(int argc, char *argv[])
     args.process(app);
     Main w(args.isSet("reset"));
     w.show();
-    return app.exec();
+    return QApplication::exec();
 }
 
 

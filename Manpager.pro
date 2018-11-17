@@ -1,5 +1,5 @@
 TEMPLATE = app
-VERSION = 1.1.1
+VERSION = 1.2.0
 COPYRIGHT = 2017-2018
 ARCHIVE = manpager
 
@@ -147,7 +147,6 @@ else {
 RESOURCES += qrc/desktop.qrc
 OTHER_FILES += \
     $${TRANSLATIONS} \
-    $${ARCHIVE}.spec \
     CHANGELOG \
     LICENSE \
     README.md \

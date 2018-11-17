@@ -80,8 +80,7 @@ static void getargs(char *text, char **result)
     result[count] = nullptr;
 }
 
-Viewer::Viewer(QTabWidget *tabs, QIODevice& input, const QString& title) :
-QTextEdit()
+Viewer::Viewer(QTabWidget *tabs, QIODevice& input, const QString& title)
 {
     qint64 len;
     char buf[512];

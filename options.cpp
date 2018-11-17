@@ -23,8 +23,7 @@
 static QCheckBox *Sections[10];
 static Ui::Options ui;
 
-Options::Options(QTabWidget *tabs, QAction *sections[]) :
-QDialog()
+Options::Options(QTabWidget *tabs, QAction *sections[])
 {
     auto main = Main::instance();
 

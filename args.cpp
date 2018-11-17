@@ -25,10 +25,7 @@ bool Args::conflicting(const QCommandLineParser& args, const QStringList& option
         if(args.isSet(opt))
             ++count;
     }
-    if(count > 1)
-        return true;
-
-    return false;
+    return count > 1;
 }
 
 bool Args::includes(const QCommandLineParser& args, const QStringList& options) {

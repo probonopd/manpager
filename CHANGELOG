@@ -1,3 +1,10 @@
+v1.2.0
+* Close Key (meta-w) for current tab
+* Closing index re-homes on index
+* F5 Key refresh added
+* F6 Key home to search added
+* F8 Key settings access added
+
 v1.1.1
 * Modernized project and code
 * Index by threading

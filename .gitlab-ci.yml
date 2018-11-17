@@ -1,7 +1,7 @@
 stages:
 - build
 
-# Build debug version after each commit or merge requests    
+# Build debug version after each sprint commit or merge request
 build:
   image: tychosoft/gitlabqt:build
   stage: build
@@ -10,6 +10,8 @@ build:
     - make | tee make.log
   tags:
     - docker
+  except:
+    - master
   artifacts:
     expire_in: 2 weeks
     when: always
