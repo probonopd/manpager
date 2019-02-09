@@ -120,7 +120,7 @@ unix:!CONFIG(app_bundle) {
         appdata.depends = target
     }
     exists(debian/Debian.pri):include(debian/Debian.pri)
-    exists(redhat/Redhat.pri):include(redhat/Redhat.pri)
+    exists(package/Package.pri):include(package/Package.pri)
 
 }
 else {
