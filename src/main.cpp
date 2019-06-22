@@ -553,18 +553,7 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
     QCommandLineParser args;
     Q_INIT_RESOURCE(desktop);
-
-#if defined(Q_OS_MAC)
-    localize.load(QLocale::system().name(), "manpager", "_", 
-        Args::exePath("../Translations"));
-#elif defined(Q_OS_WIN)
-    localize.load(QLocale::system().name(), "manpager", "_", 
-        Args::exePath("./Translations"));
-#else
-    localize.load(QLocale::system().name(), "manpager", "_", 
-        Args::exePath("../share/translations"));
-#endif
-    if(!localize.isEmpty())
+    if(localize.load("manpager_" + QLocale::system().name(), ":/i18n"))
         QApplication::installTranslator(&localize);
 
 #ifdef Q_OS_MAC

@@ -1,0 +1,25 @@
+Source: manpager
+Priority: optional
+Maintainer: David Sugar <tychosoft@gmail.com>
+Build-Depends: debhelper (>= 9),
+               dpkg-dev (>= 1.16.0),
+               qttools5-dev-tools (>= 5.6.0),
+               qttools5-dev (>= 5.6.0),
+               qtbase5-dev (>= 5.6.0),
+               qtbase5-dev-tools (>= 5.6.0),
+               qt5-default (>= 5.6.0)
+Standards-Version: 3.9.8
+Homepage: https://cloud.tychosoft.com
+Section: utils
+
+Package: manpager
+Section: utils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Simple system manual page viewer
+ This is a simple application that lets you search for and view system 
+ manual pages formatted for normal output.  The manpage viewer also lets 
+ you search for content within manual pages using the F3 key.  Probably the 
+ closest equivalent is something like xman, but this offers a more complete
+ and modern user interface.
+

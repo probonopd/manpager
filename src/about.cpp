@@ -29,10 +29,23 @@ QDialog(parent, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
     ui.setupUi(static_cast<QDialog*>(this));
     ui.labelVersion->setText(tr("Version: ") + PROJECT_VERSION);
     ui.labelCopyright->setText(tr("Copyright (C) ") + PROJECT_COPYRIGHT + " Tycho Softworks");
-    setWindowTitle(tr("About Manpager"));
+    setWindowTitle(tr("About ") + PROJECT_TARGET);
 
-    connect(ui.aboutButton, &QToolButton::clicked, this, &About::aboutProject);
-    connect(ui.tribalButton, &QToolButton::clicked, this, &About::aboutTribal);
+    connect(ui.aboutButton, &QToolButton::clicked, this, []{
+          QDesktopServices::openUrl(QUrl("https://gitlab.com/tychosoft/" PROJECT_ARCHIVE));
+    });
+
+    connect(ui.supportButton, &QToolButton::clicked, this, []{
+          QDesktopServices::openUrl(QUrl("https://cloud.tychosoft.com"));
+    });
+
+    connect(ui.developButton, &QToolButton::clicked, this, []{
+          QDesktopServices::openUrl(QUrl("https://gitlab.com/tychosoft/" PROJECT_ARCHIVE));
+    });
+
+    connect(ui.contactButton, &QToolButton::clicked, this, []{
+          QDesktopServices::openUrl(QUrl("https://www.gnutelephony.org"));
+    });
 
     if(!parent) {
         ui.closeButton->setHidden(true);
@@ -42,12 +55,3 @@ QDialog(parent, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
     }
 }
 
-void About::aboutProject()
-{
-    QDesktopServices::openUrl(QUrl("https://gitlab.com/tychosoft/manpager"));
-}
-
-void About::aboutTribal()
-{
-    QDesktopServices::openUrl(QUrl("https://www.cherokeesofidaho.org"));
-}

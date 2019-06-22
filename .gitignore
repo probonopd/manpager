@@ -1,8 +1,3 @@
-bundled/
-generated/
-doc/
-*.gch/
-
 *_resource.rc
 *.pro.user.*
 *.pro.user
@@ -14,6 +9,7 @@ doc/
 *.rpm
 *.dmg
 *.deb
+*.ddeb
 *.dsc
 *.changes
 *.buildinfo
@@ -25,13 +21,17 @@ doc/
 *.app.dSYM
 *.exe
 *.out
+*.pdf
+*.qch
 
 .qmake.*
 .DS_Store
 Makefile
-manpager
 
-moc_*
-qrc_*
-ui_*
+.custom/
+generated/
+objects/
+deploy/
+doxy/
+manpager
 
