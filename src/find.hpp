@@ -15,36 +15,56 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef ABOUT_HPP_
-#define ABOUT_HPP_
+#ifndef FIND_HPP_
+#define FIND_HPP_
 
 #include <QDialog>
+#include <QLineEdit>
+
 #include "compiler.hpp"
 
-class About final : public QDialog
+class Viewer;
+
+class Find final : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(About)
+    Q_DISABLE_COPY(Find)
 
 public:
-    About(QWidget *parent = nullptr);
+    Find(Viewer *view, const QString& search);
+
+    inline static void setSensitive(bool flag) {
+        Sensitivity = flag;
+    }
+
+    inline static bool sensitive() {
+        return Sensitivity;
+    }
+
+private:
+    QLineEdit *editor;
+
+    static bool Sensitivity;
+
+signals:
+    void updateSearch(const QString& text);
 
 private slots:
-    void aboutProject();
-    void aboutTribal();
+    void onForward();
+    void onBackward();
+    void onEnter();
 };
 
 /*!
- * Ui about dialog.
- * \file about.hpp
+ * Ui find dialog.
+ * \file find.hpp
  */
 
 /*!
- * \class About
- * \brief impliments about box ui.
- * This is used to activate the toolbox buttons which connect to the browser
- * to bring you to the link for the project on gitlab, and the tribal logo.
- * \author David Sugar <tychosoft@gmail.com>
+ * \class Find
+ * \brief implements find box dialog.
+ * This dialog is used to enter a string to look for in a view and then
+ * find the next (or prior) occurrence of it.
  */
 
 #endif

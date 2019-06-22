@@ -1,36 +1,38 @@
 TEMPLATE = app
-VERSION = 1.2.0
-COPYRIGHT = 2017-2018
+VERSION = 1.3.0
+COPYRIGHT = 2017-2019
 ARCHIVE = manpager
 
+# global defines
+DEFINES += \
+    PROJECT_VERSION=\\\"$${VERSION}\\\" \
+    PROJECT_COPYRIGHT=\\\"$${COPYRIGHT}\\\" \
+    PROJECT_TARGET=\\\"$${TARGET}\\\" \
+    PROJECT_ARCHIVE=\\\"$${ARCHIVE}\\\" \
+
 # basic compile and link config
-CONFIG += c++11 warning widgets gui core
+CONFIG += c++11 warning widgets gui core embed_translations lrelease
+CONFIG -= debug_and_release
 QT += widgets
 
 # build type specific options
 CONFIG(release,release|debug):DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
 else:DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/testdata\\\"
+exists(.custom/Custom.pri):include(.custom/Custom.pri)
 
 # platform specific options
 unix {
+    CONFIG += DesktopClient
     !macx:TARGET=manpager
     isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt5$::)
     system(rm -f "$${OUT_PWD}/$${TARGET}")
-
-    exists(/usr/bin/lrelease-qt5) {
-        LRELEASE = lrelease-qt5
-        LUPDATE = lupdate-qt5
-    }
-    else {
-        LRELEASE = lrelease
-        LUPDATE = lupdate
-    }    
 }
 
 macx {
     equals(PREFIX, "/usr/local"):CONFIG -= app_bundle
+    equals(PREFIX, "/opt/local"):CONFIG -= app_bundle
+
     CONFIG(app_bundle) {
-        CONFIG(release, release|debug):CONFIG += separate_debug_info force_debug_info
         QMAKE_INFO_PLIST = "$${TARGET}.plist"
         ICON = "$${TARGET}.icns"
         system(rm -rf "$${OUT_PWD}/$${TARGET}.app")
@@ -39,23 +41,12 @@ macx {
 }
 
 win32 {
-    QMAKE_CXXFLAGS_RELEASE += /Zi
-    QMAKE_LFLAGS_RELEASE += /debug
-    CONFIG -= debug_and_release debug_and_release_target
-    CONFIG += skip_target_version_ext
-    LRELEASE = lrelease
-    LUPDATE = lupdate
+    CONFIG += DesktopClient skip_target_version_ext app_bundle
     DEFINES += WIN32_LEAN_AND_MEAN
     RC_ICONS += "$${TARGET}.ico"
-    system(rmdir /S/Q $$shell_path($${OUT_PWD}/bundled) 2>nul)
-    system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/bundled))) 
-    system(del /q $$shell_path($${OUT_PWD}/$${TARGET}.exe) 2>nul)
 }
 
-# global defines
-DEFINES += \
-    PROJECT_VERSION=\\\"$${VERSION}\\\" \
-    PROJECT_COPYRIGHT=\\\"$${COPYRIGHT}\\\" \
+!CONFIG(DesktopClient):error(unsupported platform)
 
 # project layout
 OBJECTS_DIR = objects
@@ -63,21 +54,28 @@ RCC_DIR = generated
 MOC_DIR = generated
 UI_DIR = generated
 
-HEADERS += $$files(*.hpp)
-SOURCES += $$files(*.cpp)
-FORMS += $$files(*.ui)
-TRANSLATIONS += $$files(xdg/*.ts)
+include(src/Common.pri)
+include(src/Controls.pri)
+include(src/Localize.pri)
+include(src/Main.pri)
 
-# generate and support translations
-QMAKE_EXTRA_TARGETS += lupdate
-lupdate.commands += $${LUPDATE} "$${PWD}/$${TARGET}.pro"
-system($$sprintf("$$QMAKE_MKDIR_CMD", $$shell_path($${OUT_PWD}/generated))) 
-
-for(tr, TRANSLATIONS) {
-    tr_out=$$basename(tr)
-    tr_out=$$split(tr_out, .)
-    system($${LRELEASE} -silent $${tr} -qm "$${OUT_PWD}/generated/$$first(tr_out).qm")
-}
+RESOURCES += qrc/desktop.qrc
+OTHER_FILES += \
+    debian/changelog \
+    debian/control \
+    debian/copyright \
+    debian/manpager.install \
+    debian/rules \
+    debian/watch \
+    xdg/$${ARCHIVE}.1 \
+    xdg/$${ARCHIVE}.desktop \
+    xdg/$${ARCHIVE}.appdata.xml \
+    xdg/$${ARCHIVE}.spec.in \
+    Doxyfile \
+    CHANGELOG \
+    LICENSE \
+    README.md \
+    CONTRIBUTING.md \
 
 # source publish
 unix {
@@ -87,80 +85,50 @@ unix {
     source.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION} 2>/dev/null || git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD 
 }
 
-# extra install targets based on bundle state
-unix:!CONFIG(app_bundle) {
-    QMAKE_EXTRA_TARGETS += target locale man1
-    INSTALLS += target locale man1
+# standard build targets...
+!CONFIG(app_bundle) {
+    QMAKE_EXTRA_TARGETS += target man1 desktop pixmaps appdata
+    INSTALLS += target man1 desktop pixmaps appdata
 
     target.path = "$$PREFIX/bin"
     target.depends = all
 
-    locale.path = "$$PREFIX/share/translations"
-    locale.depends = target
-    locale.commands += $${QMAKE_INSTALL_FILE} generated/*.qm "$(INSTALL_ROOT)/$$PREFIX/share/translations"
-
-    man1.files = xdg/*.1
+    man1.files = xdg/$${ARCHIVE}.1
     man1.path = "$$PREFIX/share/man/man1"
     man1.depends = target
 
-    !macx {
-        QMAKE_EXTRA_TARGETS += desktop pixmaps appdata
-        INSTALLS += desktop pixmaps appdata
+    desktop.files = xdg/$${ARCHIVE}.desktop
+    desktop.path = "$$PREFIX/share/applications"
+    desktop.depends = target
 
-        desktop.files = xdg/*.desktop
-        desktop.path = "$$PREFIX/share/applications"
-        desktop.depends = target
+    pixmaps.files = qrc/$${ARCHIVE}.png
+    pixmaps.path = "$$PREFIX/share/pixmaps"
+    pixmaps.depends = target
 
-        pixmaps.files = xdg/*.png
-        pixmaps.path = "$$PREFIX/share/pixmaps"
-        pixmaps.depends = target
-
-        appdata.files = xdg/*.appdata.xml
-        appdata.path = "$$PREFIX/share/metainfo"
-        appdata.depends = target
-    }
-    exists(debian/Debian.pri):include(debian/Debian.pri)
-    exists(package/Package.pri):include(package/Package.pri)
-
+    appdata.files = xdg/$${ARCHIVE}.appdata.xml
+    appdata.path = "$$PREFIX/share/metainfo"
+    appdata.depends = target
 }
-else {
-    win32:CONFIG(release, release|debug) {
-        QMAKE_POST_LINK += rmdir /S/Q bundled && mkdir bundled && mkdir bundled\\translations &&
-        QMAKE_POST_LINK += copy /y $${TARGET}.exe bundled\\$${TARGET}.exe && cd bundled &&
-        QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0 &&
-        QMAKE_POST_LINK += copy /y $$shell_path("../generated/*.qm") translations
-    }
 
-    macx:CONFIG(release, release|debug): {
-        QMAKE_POST_LINK += mkdir -p "$${TARGET}.app/Contents/Translations" &&
-        QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0 -always-overwrite &&
-        QMAKE_POST_LINK += $${LRELEASE} -silent "$${PWD}/$${TARGET}.pro" &&
-        QMAKE_POST_LINK += cp -a "$$[QT_INSTALL_TRANSLATIONS]"/qt_??.qm generated/*.qm "$${TARGET}.app/Contents/Translations"
-    }
-    
-    QMAKE_EXTRA_TARGETS += clean extra_clean
-    clean.depends += extra_clean
-    macx:extra_clean.commands += rm -rf $${TARGET}.app $${TARGET}.app.dSYM
-    win32:extra_clean.commands += rmdir /S/Q bundled && mkdir bundled
-} 
+# clean
+QMAKE_EXTRA_TARGETS += clean extra_clean
+clean.depends += extra_clean
+unix:!CONFIG(app_bundle):extra_clean.commands += rm -f ${TARGET}
+macx:CONFIG(app_bundle):extra_clean.commands += rm -rf $${TARGET}.app $${TARGET}.app.dSYM
+win32:extra_clean.commands += $$QMAKE_DEL_FILE $${TARGET}.exe
 
-RESOURCES += qrc/desktop.qrc
-OTHER_FILES += \
-    $${TRANSLATIONS} \
-    CHANGELOG \
-    LICENSE \
-    README.md \
-    CONTRIBUTING.md \
-    $${TARGET}.icns \
-    $${TARGET}.ico \
-    $${TARGET}.plist \
-    xdg/$${ARCHIVE}.1 \
-    xdg/$${ARCHIVE}.png \
-    xdg/$${ARCHIVE}.desktop \
-    xdg/$${ARCHIVE}.appdata.xml \
-
+# deployment
 QMAKE_TARGET_COMPANY = "Tycho Softworks"
 QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} Tycho Softworks"
 QMAKE_TARGET_PRODUCT = "$${PRODUCT}"
 QMAKE_TARGET_DESCRIPTION = "View system manpages"
 
+QMAKE_SUBSTITUTES += specs
+specs.input = xdg/$${ARCHIVE}.spec.in
+specs.output = $${PWD}/$${ARCHIVE}.spec
+
+exists(.deploy/Deploy.pri):include(.deploy/Deploy.pri)
+else {  # public deployment code would be here...
+    win32:QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0
+    macx:QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0
+}

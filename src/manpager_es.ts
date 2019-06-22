@@ -21,10 +21,30 @@
     </message>
     <message>
         <source>About Manpager</source>
-        <translation>Acerca de Manpager</translation>
+        <translation type="vanished">Acerca de Manpager</translation>
     </message>
     <message>
         <source>Copyright (C) </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Project Page</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Tycho Support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contact Community</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Development Site</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -482,6 +502,30 @@
     </message>
     <message>
         <source>F3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press F5 to refresh index</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press F6 for new search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F6</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Press F8 to access settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F8</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

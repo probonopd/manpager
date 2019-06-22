@@ -41,6 +41,9 @@
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <widget class="QToolButton" name="aboutButton">
+         <property name="toolTip">
+          <string>Project Page</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
          </property>
@@ -61,7 +64,10 @@
         </widget>
        </item>
        <item>
-        <widget class="QToolButton" name="tribalButton">
+        <widget class="QToolButton" name="supportButton">
+         <property name="toolTip">
+          <string>Tycho Support</string>
+         </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
          </property>
@@ -70,7 +76,55 @@
          </property>
          <property name="icon">
           <iconset>
-           <normalon>:/images/tribal.png</normalon>
+           <normalon>:/images/support.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="contactButton">
+         <property name="toolTip">
+          <string>Contact Community</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/images/contact.png</normalon>
+          </iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>48</width>
+           <height>48</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QToolButton" name="developButton">
+         <property name="toolTip">
+          <string>Development Site</string>
+         </property>
+         <property name="styleSheet">
+          <string notr="true">border: none;</string>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normalon>:/images/develop.png</normalon>
           </iconset>
          </property>
          <property name="iconSize">
