@@ -1,0 +1,98 @@
+* {
+    background: black;
+    color: #DDDDDD;
+    border: 1px solid #5A5A5A;
+}
+
+QLabel, QCheckBox, QRadioButton, QToolButton, QTabBar {
+    border: none;
+}
+
+QPushButton {
+    border-radius: 8px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+QComboBox#searchBox {
+    border: 1px solid #404040;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-left: 0px;
+    padding: 2px;
+    margin: 0px;
+    margin-right: 8px;
+    margin-bottom: 1px;
+    padding-left: 0px;
+}
+
+QComboBox#searchBox::drop-down {
+    border-width: 1px;
+}
+
+QComboBox#searchBox::down-arrow {
+    image:url(:/images/downarrow.png)
+}
+
+QLabel#searchLabel {
+    border: 1px solid #404040;
+    border-right: 0px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 4px;
+    padding-right: 0px;
+    margin: 0px;
+    background: black;
+}
+
+QToolBar#toolBar {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+    background: black;
+}
+
+QDialog#Options {
+    margin: 1px;
+    border: 1px solid darkgray;
+}
+
+QListWidget#list {
+    margin-top: -1;
+    margin-left: -1;
+    border: 0px;
+    border-right: 1px solid darkgray;
+    border-bottom: 1px solid darkgray;
+}
+
+QLineEdit {
+    background: black;
+    padding: 1px;
+}
+
+QGroupBox {
+    background: black;
+    font-weight: bold;
+}
+
+QDialog, QMainWindow, QStatusBar, QListView, QStackedWidget, QTabWidget::pane {
+    background: black;
+}
+
+QDialog {
+    border: 1px solid #404040;
+}
+
+QTableView {
+    gridline-color: #5a5a5a;
+}
+
+QAbstractItemView {
+	show-decoration-selected: 1;
+	selection-background-color: #3D4898;
+	selection-color: #DDDDDD;
+	alternate-background-color: #353535;
+}
+

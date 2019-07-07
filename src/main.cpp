@@ -27,16 +27,14 @@
 static Ui::MainWindow ui;
 static QAction *manSections[10];
 static Viewer *currentView = nullptr;
+static QSettings settings(CONFIG_FROM);
+static bool night = false;
 
 Main *Main::Instance = nullptr;
 
-Main::Main(bool reset) :
-settings(CONFIG_FROM)
+Main::Main()
 {
     Q_ASSERT(Instance == nullptr);
-
-    if(reset)
-        settings.clear();
 
     index = nullptr;
     options = nullptr;
@@ -51,7 +49,7 @@ settings(CONFIG_FROM)
     toolbar = new Toolbar(this, ui.toolBar);
     statusbar = new Statusbar(ui.centralwidget, ui.statusbar);
     statusbar->enableSettings();
-    status(tr("loading..."));    
+    status(tr("loading..."));
 
     manSections[0] = ui.actionSection1;
     manSections[1] = ui.actionSection2;
@@ -223,7 +221,11 @@ void Main::sync()
 
 void Main::status(const QString& text)
 {
-    ui.statusbar->setStyleSheet("color: black");
+    if(night)
+        ui.statusbar->setStyleSheet("color: gray");
+    else
+        ui.statusbar->setStyleSheet("color: black");
+
     ui.statusbar->showMessage(text);
     ui.statusbar->update();
     ui.statusbar->repaint();
@@ -291,7 +293,7 @@ void Main::searchText()
 }
 
 void Main::reloadIndex()
-{    
+{
     toolbar->disableSearch();
     status(tr("loading..."));
 
@@ -552,12 +554,37 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
     QCommandLineParser args;
-    Q_INIT_RESOURCE(desktop);
+    args.setApplicationDescription("System Manual Page Viewer");
+    Args::add(args, {
+        {Args::HelpArgument},
+        {Args::VersionArgument},
+        {{"night"}, "Set dark color scheme"},
+        {{"reset"}, "Reset Config"},
+    });
+
     if(localize.load("manpager_" + QLocale::system().name(), ":/i18n"))
         QApplication::installTranslator(&localize);
 
-#ifdef Q_OS_MAC
+    args.process(app);
+
+    if(args.isSet("reset"))
+        settings.clear();
+
+    if(settings.value("scheme", "light") == "light" && !args.isSet("night")) {
+        Q_CLEANUP_RESOURCE(night);
+        Q_INIT_RESOURCE(light);
+    }
+    else {
+        Q_CLEANUP_RESOURCE(light);
+        Q_INIT_RESOURCE(night);
+        night = true;
+    }
+
+// delayed resource loading until we have color scheme...
+#if defined(Q_OS_MAC)
     QFile style(":/styles/macos.css");
+#elif defined(Q_OS_WINDOWS)
+    QFile style(":/styles/windows.css");
 #else
     QFile style(":/styles/desktop.css");
 #endif
@@ -569,15 +596,7 @@ int main(int argc, char *argv[])
         qApp->setStyleSheet(css);
     }
 
-    args.setApplicationDescription("System Manual Page Viewer");
-    Args::add(args, {
-        {Args::HelpArgument},
-        {Args::VersionArgument},
-        {{"reset"}, "Reset Config"},
-    });
-
-    args.process(app);
-    Main w(args.isSet("reset"));
+    Main w;
     w.show();
     return QApplication::exec();
 }

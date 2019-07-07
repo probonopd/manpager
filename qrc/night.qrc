@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>manpager.png</file>
+        <file>support.png</file>
+        <file>contact.png</file>
+        <file>develop.png</file>
+        <file>downarrow.png</file>
+        <file>searchicon.png</file>
+        <file>night-close.png</file>
+        <file>kill.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="refresh.png">night-refresh.png</file>
+        <file alias="refresh@2x.png">night-refresh@2x.png</file>
+        <file alias="settings.png">night-settings.png</file>
+        <file alias="settings@2x.png">night-settings@2x.png</file>
+        <file alias="info.png">night-info.png</file>
+        <file alias="info@2x.png">night-info@2x.png</file>
+        <file alias="clear.png">night-clear.png</file>
+        <file alias="clear@2x.png">night-clear@2x.png</file>
+        <file alias="exit.png">night-exit.png</file>
+        <file alias="exit@2x.png">night-exit@2x.png</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file alias="desktop.css">night-desktop.css</file>
+        <file alias="macos.css">night-macos.css</file>
+		<file alias="windows.css">night-windows.css</file>
+    </qresource>
+</RCC>
