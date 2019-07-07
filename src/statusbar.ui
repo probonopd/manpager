@@ -21,7 +21,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>24</width>
+    <width>91</width>
     <height>19</height>
    </rect>
   </property>
@@ -44,6 +44,9 @@
   </property>
   <property name="windowTitle">
    <string notr="true">Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <property name="spacing">
@@ -109,6 +112,11 @@
      <property name="toolTip">
       <string>Press F3 to search for text in content</string>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: gray;
+border: none;
+padding: 1px;</string>
+     </property>
      <property name="text">
       <string>F3</string>
      </property>
@@ -157,6 +165,11 @@
      <property name="toolTip">
       <string>Press F5 to refresh index</string>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: gray;
+border: none;
+padding: 1px;</string>
+     </property>
      <property name="text">
       <string>F5</string>
      </property>
@@ -199,6 +212,11 @@
      <property name="toolTip">
       <string>Press F6 for new search</string>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: gray;
+border: none;
+padding: 1px;</string>
+     </property>
      <property name="text">
       <string>F6</string>
      </property>
@@ -240,6 +258,11 @@
      </property>
      <property name="toolTip">
       <string>Press F8 to access settings</string>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: gray;
+border: none;
+padding: 1px;</string>
      </property>
      <property name="text">
       <string>F8</string>

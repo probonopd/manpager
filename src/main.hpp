@@ -36,26 +36,21 @@ class Main final : public QMainWindow
     Q_DISABLE_COPY(Main)
 
 public:
-    Main(bool reset = false);
+    Main();
     ~Main() final;
 
-    static Main *instance() {
-        return Instance;
-    }
-
-    inline static const QSettings& config() {
-        return instance()->settings;
-    }
-
-    const QStringList paths() const {
+    inline const QStringList paths() const {
         return manpaths;
     }
 
     void applyOptions(QStringList& pathlist, QCheckBox *sections[]);
     void closeOptions();
 
+    inline static Main *instance() {
+        return Instance;
+    }
+
 private:
-    QSettings settings;
     QActionGroup *searchGroup, *selectGroup;
     Index *index;
     Toolbar *toolbar;
@@ -63,12 +58,12 @@ private:
     QStringList manpaths;
     Options *options;
 
-    static Main *Instance;
-
     void resizeEvent(QResizeEvent *e) final;
 
     void load(int row);
     void sync();
+
+    static Main *Instance;
 
 signals:
     void resized();
@@ -99,7 +94,7 @@ private slots:
     void openAt(const QModelIndex& cursor);
     void openTab(int row);
 };
-	
+
 /*!
  * \mainpage Manpager
  * This is a simple manpage viewer, originally written around 2011, originally

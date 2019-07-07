@@ -1,5 +1,5 @@
 TEMPLATE = app
-VERSION = 1.3.0
+VERSION = 1.3.1
 COPYRIGHT = 2017-2019
 ARCHIVE = manpager
 
@@ -59,7 +59,7 @@ include(src/Controls.pri)
 include(src/Localize.pri)
 include(src/Main.pri)
 
-RESOURCES += qrc/desktop.qrc
+RESOURCES += qrc/light.qrc qrc/night.qrc
 OTHER_FILES += \
     debian/changelog \
     debian/control \
@@ -82,7 +82,7 @@ unix {
     QMAKE_EXTRA_TARGETS += source
     source.commands += $$QMAKE_DEL_FILE *.tar.gz &&
     source.commands += cd $${PWD} &&
-    source.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION} 2>/dev/null || git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD 
+    source.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION} 2>/dev/null || git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD
 }
 
 # standard build targets...
@@ -128,7 +128,7 @@ specs.input = xdg/$${ARCHIVE}.spec.in
 specs.output = $${PWD}/$${ARCHIVE}.spec
 
 exists(.deploy/Deploy.pri):include(.deploy/Deploy.pri)
-else {  # public deployment code would be here...
+else:CONFIG(release,release|debug) {  # public deployment code would be here...
     win32:QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0
     macx:QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0
 }

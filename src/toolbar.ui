@@ -78,7 +78,7 @@
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="qrc/desktop.qrc">:/images/searchicon.png</pixmap>
+      <pixmap resource="../qrc/light.qrc">:/images/searchicon.png</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -116,7 +116,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="qrc/desktop.qrc"/>
+  <include location="../qrc/light.qrc"/>
  </resources>
  <connections/>
 </ui>

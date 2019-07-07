@@ -24,5 +24,6 @@
     <qresource prefix="/styles">
         <file>desktop.css</file>
         <file>macos.css</file>
+		<file>windows.css</file>
     </qresource>
 </RCC>

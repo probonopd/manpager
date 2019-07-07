@@ -1,3 +1,9 @@
+manpager (1:1.3.1-1) UNRELEASED; urgency=low
+
+  * Experimental dark mode color scheme support
+
+ -- David Sugar <tychosoft@gmail.com>  Sun, 07 Jul 2019 09:19:24 -0400
+
 manpager (1:1.3.0-1) UNRELEASED; urgency=low
 
   * Built from new project layout
