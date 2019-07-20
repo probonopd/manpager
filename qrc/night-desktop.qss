@@ -1,5 +1,5 @@
 QComboBox#searchBox {
-    border: 1px solid #c0c0c0;
+    border: 1.5px solid darkgray;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: 0px;
@@ -19,51 +19,34 @@ QComboBox#searchBox::down-arrow {
 }
 
 QLabel#searchLabel {
-    border: 1px solid #c0c0c0;
+    border: 1.5px solid darkgray;
     border-right: 0px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     padding: 4px;
     padding-right: 0px;
     margin: 0px;
-    background: white;
 }
 
 QToolBar#toolBar {
     border: 0px;
     padding: 0px;
     margin: 0px;
-    background: white;
 }
 
-QDialog#Options {
-    margin: 1px;
-    border: 1px solid lightgray;
+QWidget#centralwidget, QStatusBar {
+    border: none;
 }
 
-QListWidget#list {
-    margin-top: -1;
-    margin-left: -1;
-    border: 0px;
-    border-right: 1px solid lightgray;
-    border-bottom: 1px solid lightgray;
-}
-
-QLineEdit {
-    background: white;
-    padding: 1px;
-}
-
-QGroupBox {
-    background: white;
-    font-weight: bold;
-}
-
-QDialog, QMainWindow, QStatusBar, QListView, QStackedWidget, QTabWidget::pane {
-    background: white;
+QStatusBar::item {
+    border: none;
 }
 
 QDialog {
-    border: 1px solid #c0c0c0;
+    border: 1px solid gray;
+}
+
+QDialog#Options {
+    border: none;
 }
 

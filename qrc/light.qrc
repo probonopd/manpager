@@ -22,8 +22,8 @@
         <file>exit@2x.png</file>
     </qresource>
     <qresource prefix="/styles">
-        <file>desktop.css</file>
-        <file>macos.css</file>
-		<file>windows.css</file>
+        <file>desktop.qss</file>
+        <file>macos.qss</file>
+		<file>windows.qss</file>
     </qresource>
 </RCC>

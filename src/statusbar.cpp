@@ -35,9 +35,6 @@ QWidget(parent)
     visibleIndicators = 0;
 
     ui.setupUi(this);
-#if defined(Q_OS_UNIX) && !defined(Q_OS_MAC)
-    ui.line->setFixedSize(0, 0);
-#endif
     bar->setFixedHeight(height() + 2);
     bar->addPermanentWidget(this);
 

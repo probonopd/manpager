@@ -36,22 +36,12 @@ QToolBar#toolBar {
     background: white;
 }
 
-QDialog#Options {
-    margin: 1px;
-    border: 1px solid lightgray;
-}
-
 QListWidget#list {
     margin-top: -1;
     margin-left: -1;
     border: 0px;
     border-right: 1px solid lightgray;
     border-bottom: 1px solid lightgray;
-}
-
-QLineEdit {
-    background: white;
-    padding: 1px;
 }
 
 QGroupBox {
@@ -87,4 +77,13 @@ QTabBar::close-button:hover {
     height: 12px;
     width: 12px;
 }
+
+QDialog {
+    border: 1px solid gray;
+}
+
+QDialog#Options {
+    border: none;
+}
+
 

@@ -558,7 +558,7 @@ int main(int argc, char *argv[])
     Args::add(args, {
         {Args::HelpArgument},
         {Args::VersionArgument},
-        {{"night"}, "Set dark color scheme"},
+        {{"night"}, "Set dark color icon scheme"},
         {{"reset"}, "Reset Config"},
     });
 
@@ -570,7 +570,10 @@ int main(int argc, char *argv[])
     if(args.isSet("reset"))
         settings.clear();
 
-    if(settings.value("scheme", "light") == "light" && !args.isSet("night")) {
+    auto color = qApp->palette().color(QPalette::Base);
+    auto sum = color.blue() + color.red() + color.green();
+
+    if(sum > 312 && !args.isSet("night") && settings.value("scheme", "light") != "night") {
         Q_CLEANUP_RESOURCE(night);
         Q_INIT_RESOURCE(light);
     }
@@ -582,18 +585,18 @@ int main(int argc, char *argv[])
 
 // delayed resource loading until we have color scheme...
 #if defined(Q_OS_MAC)
-    QFile style(":/styles/macos.css");
+    QFile style(":/styles/macos.qss");
 #elif defined(Q_OS_WINDOWS)
-    QFile style(":/styles/windows.css");
+    QFile style(":/styles/windows.qss");
 #else
-    QFile style(":/styles/desktop.css");
+    QFile style(":/styles/desktop.qss");
 #endif
 
     if(style.exists()) {
         style.open(QFile::ReadOnly);
-        QString css = QLatin1String(style.readAll());
+        QString qss = QLatin1String(style.readAll());
         style.close();
-        qApp->setStyleSheet(css);
+        qApp->setStyleSheet(qss);
     }
 
     Main w;
