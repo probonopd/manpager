@@ -41,6 +41,11 @@ QWidget(parent)
     ui.searchBox->setValidator(validator);
     disableSearch();
 
+#if !defined(Q_OS_WIN)
+    auto color = qApp->palette().color(QPalette::Base);
+    ui.searchLabel->setStyleSheet("background: " + color.name() + ";");
+#endif
+
     Main *main = Main::instance();
     connect(ui.searchBox, &QComboBox::editTextChanged, main, &Main::searchIndex);
     connect(ui.searchBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated), main, &Main::openNamed);

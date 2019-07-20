@@ -94,7 +94,7 @@ Viewer::Viewer(QTabWidget *tabs, QIODevice& input, const QString& title)
     bool bold, underline, italic;
     char *body, *tail;
 
-    while((len = input.readLine(buf, sizeof(buf))) > 0) {    
+    while((len = input.readLine(buf, sizeof(buf))) > 0) {
         bold = underline = italic = false;
         argv[0] = argv[1] = nullptr;
         memset(format, 0, sizeof(format));
@@ -347,6 +347,9 @@ body:
     tabs->addTab(this, title);
     tabs->setCurrentIndex(tabPosition);
     tabs->setTabsClosable(true);
+
+    setFrameShape(QFrame::Box);
+    setFrameShadow(QFrame::Sunken);
 }
 
 void Viewer::activateFind()

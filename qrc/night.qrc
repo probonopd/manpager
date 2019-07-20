@@ -7,6 +7,7 @@
         <file>downarrow.png</file>
         <file>searchicon.png</file>
         <file>night-close.png</file>
+        <file>night-check.png</file>
         <file>kill.png</file>
     </qresource>
     <qresource prefix="/icons">
@@ -22,8 +23,8 @@
         <file alias="exit@2x.png">night-exit@2x.png</file>
     </qresource>
     <qresource prefix="/styles">
-        <file alias="desktop.css">night-desktop.css</file>
-        <file alias="macos.css">night-macos.css</file>
-		<file alias="windows.css">night-windows.css</file>
+        <file alias="desktop.qss">night-desktop.qss</file>
+        <file alias="macos.qss">night-macos.qss</file>
+		<file alias="windows.qss">night-windows.qss</file>
     </qresource>
 </RCC>

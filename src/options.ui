@@ -42,7 +42,7 @@
     <number>0</number>
    </property>
    <item>
-    <widget class="QFrame" name="frame">
+    <widget class="QFrame" name="optionsFrame">
      <property name="frameShape">
       <enum>QFrame::Box</enum>
      </property>
@@ -77,8 +77,11 @@
             <pointsize>14</pointsize>
            </font>
           </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
           <property name="frameShape">
-           <enum>QFrame::Box</enum>
+           <enum>QFrame::NoFrame</enum>
           </property>
           <property name="frameShadow">
            <enum>QFrame::Sunken</enum>

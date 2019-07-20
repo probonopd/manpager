@@ -1,23 +1,5 @@
-* {
-    background: black;
-    color: #DDDDDD;
-    border: 1px solid #5A5A5A;
-}
-
-QLabel, QCheckBox, QRadioButton, QToolButton, QTabBar {
-    border: none;
-}
-
-QPushButton {
-    border-radius: 8px;
-    padding-left: 6px;
-    padding-right: 6px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-}
-
 QComboBox#searchBox {
-    border: 1px solid #404040;
+    border: 1.5px solid #606060;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     border-left: 0px;
@@ -37,7 +19,7 @@ QComboBox#searchBox::down-arrow {
 }
 
 QLabel#searchLabel {
-    border: 1px solid #404040;
+    border: 1.5px solid #606060;
     border-right: 0px;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -54,22 +36,12 @@ QToolBar#toolBar {
     background: black;
 }
 
-QDialog#Options {
-    margin: 1px;
-    border: 1px solid darkgray;
-}
-
 QListWidget#list {
     margin-top: -1;
     margin-left: -1;
     border: 0px;
-    border-right: 1px solid darkgray;
-    border-bottom: 1px solid darkgray;
-}
-
-QLineEdit {
-    background: black;
-    padding: 1px;
+    border-right: 1px solid #404040;
+    border-bottom: 1px solid #404040;
 }
 
 QGroupBox {
@@ -81,18 +53,38 @@ QDialog, QMainWindow, QStatusBar, QListView, QStackedWidget, QTabWidget::pane {
     background: black;
 }
 
+QTabBar::tab {
+    border: 1px solid gray;
+    border-bottom: 0px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 2px 8px 2px 8px;
+    background: #202020;
+    color: gray;
+}
+
+QTabBar::tab::selected {
+    background: #35353535;
+    color: white;
+}
+
+QTabBar::close-button {
+    image: url(:/images/night-close.png); /* night close.png */
+    height: 12px;
+    width: 12px;
+}
+
+QTabBar::close-button:hover {
+    image: url(:/images/kill.png);
+    height: 12px;
+    width: 12px;
+}
+
+
 QDialog {
-    border: 1px solid #404040;
+    border: 1px solid gray;
 }
 
-QTableView {
-    gridline-color: #5a5a5a;
+QDialog#Options {
+    border: none;
 }
-
-QAbstractItemView {
-	show-decoration-selected: 1;
-	selection-background-color: #3D4898;
-	selection-color: #DDDDDD;
-	alternate-background-color: #353535;
-}
-
