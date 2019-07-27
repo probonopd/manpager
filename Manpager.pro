@@ -127,10 +127,9 @@ QMAKE_SUBSTITUTES += specs
 specs.input = xdg/$${ARCHIVE}.spec.in
 specs.output = $${PWD}/$${ARCHIVE}.spec
 
-# create a temporary debian changelog
+# create a temporary debian changelog if missing
 exists("debian/"):!exists("debian/changelog"):unix {
     DCH_BIN = $$system(which dch)
-    system(rm -f debian/changelog)
     !isEmpty(DCH_BIN):system(dch --create --empty -v "$${VERSION}-1" --package "$${ARCHIVE}")
 }
 
