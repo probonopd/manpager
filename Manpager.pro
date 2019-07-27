@@ -127,6 +127,13 @@ QMAKE_SUBSTITUTES += specs
 specs.input = xdg/$${ARCHIVE}.spec.in
 specs.output = $${PWD}/$${ARCHIVE}.spec
 
+# create a temporary debian changelog
+exists("debian/"):unix {
+    DCH_BIN = $$system(which dch)
+    system(rm -f debian/changelog)
+    !isEmpty(DCH_BIN):system(dch --create --empty -v "$${VERSION}-1" --package "$${ARCHIVE}")
+}
+
 exists(.deploy/Deploy.pri):include(.deploy/Deploy.pri)
 else:CONFIG(release,release|debug) {  # public deployment code would be here...
     win32:QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0
