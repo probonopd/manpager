@@ -128,7 +128,7 @@ specs.input = xdg/$${ARCHIVE}.spec.in
 specs.output = $${PWD}/$${ARCHIVE}.spec
 
 # create a temporary debian changelog
-exists("debian/"):unix {
+exists("debian/"):!exists("debian/changelog"):unix {
     DCH_BIN = $$system(which dch)
     system(rm -f debian/changelog)
     !isEmpty(DCH_BIN):system(dch --create --empty -v "$${VERSION}-1" --package "$${ARCHIVE}")
