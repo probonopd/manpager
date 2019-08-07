@@ -18,7 +18,7 @@ QT += widgets
 # build type specific options
 CONFIG(release,release|debug):DEFINES += QT_NO_DEBUG_OUTPUT QT_NO_DEBUG
 else:DEFINES += PROJECT_TESTDATA=\\\"$${PWD}/testdata\\\"
-exists(.custom/Custom.pri):include(.custom/Custom.pri)
+exists(Custom.pri):include(Custom.pri)
 
 # platform specific options
 unix {
@@ -70,7 +70,7 @@ OTHER_FILES += \
     xdg/$${ARCHIVE}.1 \
     xdg/$${ARCHIVE}.desktop \
     xdg/$${ARCHIVE}.appdata.xml \
-    xdg/$${ARCHIVE}.spec.in \
+    $${ARCHIVE}.spec.in \
     Doxyfile \
     CHANGELOG \
     LICENSE \
@@ -124,16 +124,10 @@ QMAKE_TARGET_PRODUCT = "$${PRODUCT}"
 QMAKE_TARGET_DESCRIPTION = "View system manpages"
 
 QMAKE_SUBSTITUTES += specs
-specs.input = xdg/$${ARCHIVE}.spec.in
+specs.input = $${PWD}/$${ARCHIVE}.spec.in
 specs.output = $${PWD}/$${ARCHIVE}.spec
 
-# create a temporary debian changelog if missing
-exists("debian/"):!exists("debian/changelog"):unix {
-    DCH_BIN = $$system(which dch)
-    !isEmpty(DCH_BIN):system(dch --create --empty -v "$${VERSION}-1" --package "$${ARCHIVE}")
-}
-
-exists(.deploy/Deploy.pri):include(.deploy/Deploy.pri)
+exists(Deploy.pri):include(Deploy.pri)
 else:CONFIG(release,release|debug) {  # public deployment code would be here...
     win32:QMAKE_POST_LINK += windeployqt "$${TARGET}.exe" -verbose=0
     macx:QMAKE_POST_LINK += macdeployqt "$${TARGET}.app" -verbose=0

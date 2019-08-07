@@ -1,5 +1,5 @@
 *           text=auto
-*.cmd       text eol=crlf 
+*.cmd       text eol=crlf
 *.ps1	    text eol=lf
 
 .gitattributes	export-ignore
@@ -8,3 +8,6 @@
 .gitlab/ export-ignore
 .deploy/ export-ignore
 debian/ export-ignore
+
+Deploy.pri export-ignore
+Custom.pri export-ignore
