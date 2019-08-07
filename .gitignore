@@ -27,7 +27,6 @@
 .qmake.*
 .DS_Store
 Makefile
-debian/changelog
 
 .custom/
 generated/
