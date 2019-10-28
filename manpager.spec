@@ -37,7 +37,7 @@ qmake-qt5 QMAKE_CXXFLAGS+="%optflags" QMAKE_STRIP=%__strip
 
 %files
 %defattr(-,root,root)
-%doc README.md LICENSE CHANGELOG
+%doc README.md LICENSE CHANGES
 %{_bindir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/pixmaps/%{name}.png
