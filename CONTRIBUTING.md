@@ -1,14 +1,9 @@
 Standard Practices
 ==================
 
-I have chosen several standard practices in those packages I now happen to use **Qt** and **qmake** for, to facilitate development, to better support distributed releases, and to provide better testability of my software.  
+I have chosen several standard practices in those packages I now happen to use **Qt** and **qmake** for, to facilitate development, to better support distributed releases, and to provide better testability of my software.
 
 In standardizing and documenting my own practices, I believe it is important not just for the code to be free, but also how to build a given project and manage the software lifecycle as well.  There is no reason why one cannot produce high quality enterprise ready free as in freedom software, and many reasons why free software can and should produce better results.
-
-Copyright Assignment
-====================
-
-What makes a copyleft license stronger than a generic free software license like the BSD or MIT license is that the freedom it offers to all downstream users cannot be terminated by any intermediary party, and is actively defendable in court.  This requires a copyright holder (or holders) of record with explicit right to do so.  Tycho Softworks is the copyright holder for this package and so we desire all significant contributions to include explicit copyright assignment.
 
 Build Types
 ===========
@@ -26,32 +21,13 @@ I have also standardized multi-language localization for my desktop applications
 
 I may use of Qt pri's to better segment the codebase when used from QtCreator.  This makes it easier to gather common functionality together and provide structure to the overall project without having to segment the package into static libraries or lots of subdirectories.  It also makes for easy isolation and re-use of source components directly.
 
-I try to use Qt 5.x style signal-slots exclusively, and I have chosen to generally standardize around c++11 in all my newer c++ applications.  I also make use of Qt style naming conventions in my code. 
+I try to use Qt 5.x style signal-slots exclusively, and I have chosen to generally standardize around c++11 in all my newer c++ applications.  I also make use of Qt style naming conventions in my code.
 
 Platform Specific Issues
 ========================
 
-For both Windows and MacOS platforms I presume the Digia online installer will be used to install Qt itself, rather than working with ports (such as macports) or self-built configurations.  I will then bundle the Digia Qt runtimes for application deployment (using windeplyqt & macdeplyqt).  If I need to create additional frameworks, plugins, and other dependencies for those platforms, they will be initially installed in the Digia Qt installation directories first.  This seemed simpler for managing Qt development on those platforms.  
+For both Windows and MacOS platforms I presume the Digia online installer will be used to install Qt itself, rather than working with ports (such as macports) or self-built configurations.  I will then bundle the Digia Qt runtimes for application deployment (using windeplyqt & macdeplyqt).  If I need to create additional frameworks, plugins, and other dependencies for those platforms, they will be initially installed in the Digia Qt installation directories first.  This seemed simpler for managing Qt development on those platforms.
 
 On MacOS I will produce desktop applications as application bundles, and any additional libraries I may provide for use with Qt will be distributed as frameworks as well.  On GNU/Linux I use the distro version (for BSD, the ports collection version) of Qt, with both applications and any additional libraries installed in standard /usr paths by default.  On GNU/Linux and BSD I also use XDG standards for setting desktop menus.  On GNU/Linux I will use standard distro packaging (debian, rpm, etc) to make installable applications, and on both GNU/Linux and BSD the original source tarballs may also be directly used to produce and install my applications.  In the case of Windows, I will typically provide applications with an INNO Setup generated installer.
 
 On MacOS one should also be able to directly use homebrew, and the versions of Qt included with those.  I auto-detect such uses based on the Qt prefix directory.  When using homebrew or similar, I do not create application bundles and instead the build follows normal unix conventions.
-
-Project Planning
-================
-
-Official project planning is performed in a gitlab project.  I will be using the issue tracking system and kanban style issue boards offered there.  All issues will be added to the backlog there, with what they call milestones and sprints being mostly interchangeable. 
-
-I have standardized use of tags for issues in gitlab for project planning. This includes "RC" for "release critical" issues, "hotfix" for bugs that may require an immediate release, "bugs" to distinguish bug issues from feature branches, and "blocked" to indicate some issue is currently blocked from further work. Standard tags can be found at gitlab [Tychosoft Tags](https://gitlab.com/groups/tychosoft/labels).
-
-Merges and Versioning
-=====================
-
-Feature branches should be created thru and named by the issue tracker directly.  This facilitates auto-closure on merge in gitlab.  Generally a collection of issues will be gathered together and put on a milestone for development and inclusion in the next x.Y.0 release.  All changes will be made on an issue branch taken from master or a sprint branch, and if merged back to a sprint branch, will then be merged to master with a squash commit.  A rolling changelog will be maintained in a sprint branch.  This of course is normal to gitlab issue flow.
-
-While an active milestone sprint is underway any high priority fixes will be merged back to master immediately, and then cherry-picked into a hotfix branch as needed for a hotfix release.  Non-priority feature branches may not get merged until the end of the milestone sprint.  If there is no active milestone sprint underway, then any priority bugfix will be merged back to master and directly released as a point release as needed.
-
-In addition to merge requests, a few things are done directly on master.
-Tagging will typically happen from master, unless it is done for a hotfix patch
-release.  Sometimes other packaging/release process issues will happen as
-direct commits on master as well.

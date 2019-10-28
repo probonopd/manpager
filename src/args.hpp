@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Tycho Softworks.
+ * Copyright (C) 2017-2019 David Sugar <tychosoft@gmail.com>.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ public:
     };
 
     inline Args(const QStringList& flags, const QString& help, const QString& range, const QString& value) : opt(flags, help, range, value), mode(GenericArgument) {}
-    
+
     inline Args(const QStringList& flags, const QString& help) : opt(flags, help), mode(GenericArgument) {}
 
     inline Args(const QPair<QString,QString>& pos) : opt(pos.first, pos.second), mode(PositionalArgument) {}

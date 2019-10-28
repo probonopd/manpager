@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2011-2017 Tycho Softworks.
+ * Copyright (C) 2011-2019 David Sugar <tychosoft@gmail.com>.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <QMainWindow>
 #include <QActionGroup>
 #include <QStringList>
+#include <QDebug>
 
 #include "compiler.hpp"
 #include "toolbar.hpp"

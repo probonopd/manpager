@@ -1,6 +1,16 @@
+# Copyright (C) 2017-2019 David Sugar <tychosoft@gmail.com>.
+#
+# This file is free software; as a special exception the author gives
+# unlimited permission to copy and/or distribute it, with or without
+# modifications, as long as this notice is preserved.
+#
+# This program is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
+# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
 TEMPLATE = app
-VERSION = 1.3.1
-COPYRIGHT = 2017-2019
+VERSION = 1.3.2
+COPYRIGHT = 2011-2019
 ARCHIVE = manpager
 
 # global defines
@@ -118,8 +128,8 @@ macx:CONFIG(app_bundle):extra_clean.commands += rm -rf $${TARGET}.app $${TARGET}
 win32:extra_clean.commands += $$QMAKE_DEL_FILE $${TARGET}.exe
 
 # deployment
-QMAKE_TARGET_COMPANY = "Tycho Softworks"
-QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} Tycho Softworks"
+QMAKE_TARGET_COMPANY = "tychosoft.com"
+QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} David Sugar <tychosoft@gmail.com>"
 QMAKE_TARGET_PRODUCT = "$${PRODUCT}"
 QMAKE_TARGET_DESCRIPTION = "View system manpages"
 

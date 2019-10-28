@@ -32,15 +32,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Tycho Support</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Contact Community</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Development Site</source>
+        <source>Support</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

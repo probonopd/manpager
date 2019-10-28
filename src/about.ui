@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <author>David Sugar</author>
- <comment>** Copyright (C) 2011-2017 Tycho Softworks.
+ <comment>** Copyright (C) 2011-2019 David Sugar &gt;tychosoft@gmail.com&lt;.
 **
 ** This program is free software: you can redistribute it and/or modify
 ** it under the terms of the GNU General Public License as published
@@ -66,7 +66,7 @@
        <item>
         <widget class="QToolButton" name="supportButton">
          <property name="toolTip">
-          <string>Tycho Support</string>
+          <string>Support</string>
          </property>
          <property name="styleSheet">
           <string notr="true">border: none;</string>
@@ -77,54 +77,6 @@
          <property name="icon">
           <iconset>
            <normalon>:/images/support.png</normalon>
-          </iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>48</width>
-           <height>48</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="contactButton">
-         <property name="toolTip">
-          <string>Contact Community</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border: none;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normalon>:/images/contact.png</normalon>
-          </iconset>
-         </property>
-         <property name="iconSize">
-          <size>
-           <width>48</width>
-           <height>48</height>
-          </size>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QToolButton" name="developButton">
-         <property name="toolTip">
-          <string>Development Site</string>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">border: none;</string>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-         <property name="icon">
-          <iconset>
-           <normalon>:/images/develop.png</normalon>
           </iconset>
          </property>
          <property name="iconSize">

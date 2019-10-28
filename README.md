@@ -8,7 +8,7 @@ While Manpager is a cross-platform desktop application, generally this applicati
 History
 =======
 
-Manpager first appeared as "coastal manpager" in coastal-qt in 2011.  Back then I was experimenting with cross-platform Qt desktop applications and cmake. This is a stand-alone derived version of coastal manpager, to make it easier to separately maintain, and to experiment with what I feel are good practices for using Qt and QtCreator for cross-platform development.  Manpager is licensed using the GNU GPL, Version 3 or later, as was it's immediate predecessor, coastal-qt.  
+Manpager first appeared as "coastal manpager" in coastal-qt in 2011.  Back then I was experimenting with cross-platform Qt desktop applications and cmake. This is a stand-alone derived version of coastal manpager, to make it easier to separately maintain, and to experiment with what I feel are good practices for using Qt and QtCreator for cross-platform development.  Manpager is licensed using the GNU GPL, Version 3 or later, as was it's immediate predecessor, coastal-qt.
 
 Install
 =======
@@ -22,4 +22,4 @@ For generic Unix (GNU/Linux, BSD systems, etc), the publish target provides a cl
 Support
 =======
 
-At the moment I do not have infrastructure to offer support.  I have published this, and perhaps as of this writing, other packages, mostly to experiment with and facilitate best practices for future work.  I do maintain an email address for public contact for all similarly published Tycho Softworks projects as [tychosoft@gmail.com](mailto://tychosoft@gmail.com).  Merge requests may be accepted when I happen to have a chance and connectivity to do so.  I also will be using the gitlab [manpager](https://gitlab.com/tychosoft/manpager) issue tracker for bug reporting and project management.
+At the moment I do not have infrastructure to offer support.  I have published this, and perhaps as of this writing, other packages, mostly to experiment with and facilitate best practices for future work.  I do maintain an email address for public contact for all similarly published projects as [tychosoft@gmail.com](mailto://tychosoft@gmail.com).

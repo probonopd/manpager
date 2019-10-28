@@ -1,5 +1,5 @@
 /**
- ** Copyright (C) 2011-2017 Tycho Softworks.
+ ** Copyright (C) 2011-2019 David Sugar <tychosoft@gmail.com>.
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -16,7 +16,6 @@
  **/
 
 #include "main.hpp"
-#include "config.hpp"
 #include "about.hpp"
 #include "viewer.hpp"
 #include "args.hpp"
@@ -27,7 +26,7 @@
 static Ui::MainWindow ui;
 static QAction *manSections[10];
 static Viewer *currentView = nullptr;
-static QSettings settings(CONFIG_FROM);
+static QSettings settings("tychosoft.com", "textseeker");
 static bool night = false;
 
 Main *Main::Instance = nullptr;

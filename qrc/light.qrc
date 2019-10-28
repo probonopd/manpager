@@ -2,8 +2,6 @@
     <qresource prefix="/images">
         <file>manpager.png</file>
         <file>support.png</file>
-        <file>contact.png</file>
-        <file>develop.png</file>
         <file>downarrow.png</file>
         <file>searchicon.png</file>
         <file>close.png</file>

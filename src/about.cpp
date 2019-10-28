@@ -1,5 +1,5 @@
 /**
- ** Copyright (C) 2011-2017 Tycho Softworks.
+ ** Copyright (C) 2011-2019 David Sugar <tychosoft@gmail.com>.
  **
  ** This program is free software: you can redistribute it and/or modify
  ** it under the terms of the GNU General Public License as published by
@@ -15,7 +15,6 @@
  ** along with this program.  If not, see <http://www.gnu.org/licenses/>.
  **/
 
-#include "config.hpp"
 #include "about.hpp"
 #include "ui_about.h"
 #include <QUrl>
@@ -28,23 +27,15 @@ QDialog(parent, Qt::Popup|Qt::WindowTitleHint|Qt::WindowCloseButtonHint)
 {
     ui.setupUi(static_cast<QDialog*>(this));
     ui.labelVersion->setText(tr("Version: ") + PROJECT_VERSION);
-    ui.labelCopyright->setText(tr("Copyright (C) ") + PROJECT_COPYRIGHT + " Tycho Softworks");
+    ui.labelCopyright->setText(tr("Copyright (C) ") + PROJECT_COPYRIGHT + " David Sugar <tychosoft@gmail.com>");
     setWindowTitle(tr("About ") + PROJECT_TARGET);
 
     connect(ui.aboutButton, &QToolButton::clicked, this, []{
-          QDesktopServices::openUrl(QUrl("https://gitlab.com/tychosoft/" PROJECT_ARCHIVE));
+          QDesktopServices::openUrl(QUrl("https://server.tychosoft.com/gitea/desktop/" PROJECT_ARCHIVE));
     });
 
     connect(ui.supportButton, &QToolButton::clicked, this, []{
-          QDesktopServices::openUrl(QUrl("https://cloud.tychosoft.com"));
-    });
-
-    connect(ui.developButton, &QToolButton::clicked, this, []{
-          QDesktopServices::openUrl(QUrl("https://gitlab.com/tychosoft/" PROJECT_ARCHIVE));
-    });
-
-    connect(ui.contactButton, &QToolButton::clicked, this, []{
-          QDesktopServices::openUrl(QUrl("https://www.gnutelephony.org"));
+          QDesktopServices::openUrl(QUrl("https://www.tychosoft.com"));
     });
 
     if(!parent) {

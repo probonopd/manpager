@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Tycho Softworks.
+ * Copyright (C) 2017-2019 David Sugar <tychosoft@gmail.com>.
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ bool Args::includes(const QCommandLineParser& args, const QStringList& options) 
     return false;
 }
 
-void Args::add(QCommandLineParser& args, const QList<Args>& list) 
+void Args::add(QCommandLineParser& args, const QList<Args>& list)
 {
     foreach(auto op, list) {
         add(args, op.mode, op);
