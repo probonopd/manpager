@@ -10,6 +10,7 @@
 
 TEMPLATE = app
 VERSION = 1.3.2
+TARGET = Manpager
 COPYRIGHT = 2011-2019
 ARCHIVE = manpager
 
