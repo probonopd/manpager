@@ -1,3 +1,7 @@
+v1.3.3
+* Fixed application plist
+* Specify default target case
+
 v1.3.2
 * Updated url's and copyrights
 
