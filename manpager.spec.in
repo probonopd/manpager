@@ -15,7 +15,6 @@ Release: 1
 Summary: Simple system manual page viewer
 License: GPL-3.0+
 Group:   Applications/System
-Vendor:  tychosoft.com
 URL:     https://www.tychosoft.com
 Source:  https://public.tychosoft.com/archive/%{name}-%{version}.tar.gz
 BuildRequires: libqt5-qtbase-devel libqt5-linguist-devel
