@@ -32,6 +32,6 @@ Makefile
 generated/
 objects/
 deploy/
-doxy/
+.doxy/
 manpager
 
