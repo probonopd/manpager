@@ -29,6 +29,12 @@ static Viewer *currentView = nullptr;
 static QSettings settings("tychosoft.com", "textseeker");
 static bool night = false;
 
+#if QT_VERSION >= 0x051500
+static auto SkipEmptyParts = Qt::SkipEmptyParts;
+#else
+static auto SkipEmptyParts = QString::SkipEmptyParts;
+#endif
+
 Main *Main::Instance = nullptr;
 
 Main::Main()
@@ -92,7 +98,7 @@ Main::Main()
         if(dir.exists())
             manpaths << dir.path();
 #else
-        manpaths = QString(getenv("MANPATH")).split(":", Qt::SkipEmptyParts);
+        manpaths = QString(getenv("MANPATH")).split(":", SkipEmptyParts);
         if(manpaths.count() < 1) {
             manpaths << "/usr/share/man";
             dir.setPath("/usr/local/share/man");
