@@ -48,7 +48,7 @@ QWidget(parent)
 
     Main *main = Main::instance();
     connect(ui.searchBox, &QComboBox::editTextChanged, main, &Main::searchIndex);
-    connect(ui.searchBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated), main, &Main::openNamed);
+    connect(ui.searchBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::textActivated), main, &Main::openNamed);
 }
 
 bool Toolbar::eventFilter(QObject *object, QEvent *event)

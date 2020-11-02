@@ -92,7 +92,7 @@ Main::Main()
         if(dir.exists())
             manpaths << dir.path();
 #else
-        manpaths = QString(getenv("MANPATH")).split(":", QString::SkipEmptyParts);
+        manpaths = QString(getenv("MANPATH")).split(":", Qt::SkipEmptyParts);
         if(manpaths.count() < 1) {
             manpaths << "/usr/share/man";
             dir.setPath("/usr/local/share/man");

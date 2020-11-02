@@ -336,7 +336,7 @@ body:
     }
 
     findText = "";
-    findBy =nullptr;
+    findBy = QTextDocument::FindFlags();
     find = nullptr;
 
     setReadOnly(true);
@@ -379,7 +379,7 @@ void Viewer::closeFind(QObject *object)
 void Viewer::setDirection(bool forward, bool sensitivity)
 {
     if(forward)
-        findBy = nullptr;
+        findBy = QTextDocument::FindFlags();
     else
         findBy = QTextDocument::FindBackward;
 
