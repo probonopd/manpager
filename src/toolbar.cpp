@@ -48,7 +48,7 @@ QWidget(parent)
 
     Main *main = Main::instance();
     connect(ui.searchBox, &QComboBox::editTextChanged, main, &Main::searchIndex);
-#if QT_VERSION >= 0x051500
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     connect(ui.searchBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::textActivated), main, &Main::openNamed);
 #else
     connect(ui.searchBox, static_cast<void(QComboBox::*)(const QString &)>(&QComboBox::activated), main, &Main::openNamed);

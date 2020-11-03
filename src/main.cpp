@@ -29,7 +29,7 @@ static Viewer *currentView = nullptr;
 static QSettings settings("tychosoft.com", "textseeker");
 static bool night = false;
 
-#if QT_VERSION >= 0x051500
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
 static auto SkipEmptyParts = Qt::SkipEmptyParts;
 #else
 static auto SkipEmptyParts = QString::SkipEmptyParts;
