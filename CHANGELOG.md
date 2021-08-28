@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.3.4
+- In-Progress...
+
 ## v1.3.3
 - Fixed application plist
 - Specify default target case
