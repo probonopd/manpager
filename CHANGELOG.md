@@ -1,5 +1,8 @@
 # Release Notes
 
+## v1.4.1
+- In progress
+
 ## v1.4.0
 - Improved dark mode
 - Updated for Qt6
