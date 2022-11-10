@@ -35,7 +35,7 @@ exists(Custom.pri):include(Custom.pri)
 unix {
     CONFIG += DesktopClient
     !macx:TARGET=manpager
-    isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt5$::)
+    isEmpty(PREFIX):PREFIX=$$system(echo $$[QT_INSTALL_DATA] | sed s:/[a-z0-9]*/qt6$::)
     system(rm -f "$${OUT_PWD}/$${TARGET}")
 }
 
