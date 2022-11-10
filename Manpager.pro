@@ -9,9 +9,9 @@
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 TEMPLATE = app
-VERSION = 1.3.4
+VERSION = 1.4.0
 TARGET = Manpager
-COPYRIGHT = 2011-2019
+COPYRIGHT = 2011-2022
 ARCHIVE = manpager
 
 # global defines
@@ -81,7 +81,6 @@ OTHER_FILES += \
     xdg/$${ARCHIVE}.1 \
     xdg/$${ARCHIVE}.desktop \
     xdg/$${ARCHIVE}.appdata.xml \
-    $${ARCHIVE}.spec.in \
     Doxyfile \
     CHANGELOG \
     LICENSE \
@@ -133,10 +132,6 @@ QMAKE_TARGET_COMPANY = "tychosoft.com"
 QMAKE_TARGET_COPYRIGHT = "$${COPYRIGHT} David Sugar <tychosoft@gmail.com>"
 QMAKE_TARGET_PRODUCT = "$${PRODUCT}"
 QMAKE_TARGET_DESCRIPTION = "View system manpages"
-
-QMAKE_SUBSTITUTES += specs
-specs.input = $${PWD}/$${ARCHIVE}.spec.in
-specs.output = $${PWD}/$${ARCHIVE}.spec
 
 exists(Deploy.pri):include(Deploy.pri)
 else:CONFIG(release,release|debug) {  # public deployment code would be here...

@@ -1,8 +1,9 @@
 # Release Notes
 
-## v1.3.4
+## v1.4.0
 - Improved dark mode
 - Updated for Qt6
+- Clean up old packaging
 
 ## v1.3.3
 - Fixed application plist
