@@ -50,13 +50,13 @@ QWidget(parent)
     f8Key = new QShortcut(QKeySequence(Qt::Key_F8), parent);
     f8Key->setContext(Qt::ApplicationShortcut);
 
-    findKey = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), parent);
+    findKey = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_F), parent);
     findKey->setContext(Qt::ApplicationShortcut);
 
-    closeKey = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_W), parent);
+    closeKey = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_W), parent);
     closeKey->setContext(Qt::ApplicationShortcut);
 
-    refreshKey = new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_R), parent);
+    refreshKey = new QShortcut(QKeySequence(Qt::CTRL | Qt::Key_R), parent);
     refreshKey->setContext(Qt::ApplicationShortcut);
 
     clearIndicators();

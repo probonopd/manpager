@@ -1,7 +1,8 @@
 # Release Notes
 
 ## v1.3.4
-- In-Progress...
+- Improved dark mode
+- Updated for Qt6
 
 ## v1.3.3
 - Fixed application plist

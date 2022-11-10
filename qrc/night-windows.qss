@@ -4,6 +4,21 @@ QLabel, QDialog, QGroupBox, QRadioButton, QToolButton, QTabBar, QAbstractItemVie
     background: black;
 }
 
+QLineEdit, QComboBox {
+    color: white;
+    background: black;
+    border: 2px solid gray;
+}
+
+QPushButton {
+    background: black;
+    color: white;
+    border-radius: 8px;
+    border: 1.5px solid gray;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
 QHeaderView::section {
     color: lightgray;
     border: 1px solid gray;

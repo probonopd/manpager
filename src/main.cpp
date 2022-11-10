@@ -94,7 +94,7 @@ Main::Main()
     if(manpaths.count() < 1) {
         QDir dir;
 #ifdef Q_OS_WIN
-        dir = "c:\\Tools\\man";
+        dir.setPath("c:\\Tools\\man");
         if(dir.exists())
             manpaths << dir.path();
 #else
@@ -577,6 +577,22 @@ int main(int argc, char *argv[])
 
     auto color = qApp->palette().color(QPalette::Base);
     auto sum = color.blue() + color.red() + color.green();
+
+#ifdef Q_OS_WINDOWS
+    QSettings wintheme( "HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize", QSettings::NativeFormat );
+    if(settings.value( "AppsUseLightTheme", 1 ).toInt() == 0)
+        sum = 512;
+    else {
+        sum = 0;
+        QPalette p = qApp->palette();
+        p.setColor(QPalette::Window, QColor(53,53,53));
+        p.setColor(QPalette::Button, QColor(53,53,53));
+        p.setColor(QPalette::Highlight, QColor(142,45,197));
+        p.setColor(QPalette::ButtonText, QColor(255,255,255));
+        p.setColor(QPalette::WindowText, QColor(255,255,255));
+        qApp->setPalette(p);
+    }
+#endif
 
     if(sum > 312 && !args.isSet("night") && settings.value("scheme", "light") != "night") {
         Q_CLEANUP_RESOURCE(night);

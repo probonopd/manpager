@@ -67,10 +67,10 @@ bool Toolbar::eventFilter(QObject *object, QEvent *event)
             break;
 
         pos = window->pos();
-        pos.rx() += mouse->globalPos().x() - mpos.x();
-        pos.ry() += mouse->globalPos().y() - mpos.y();
+        pos.rx() += mouse->globalPosition().x() - mpos.x();
+        pos.ry() += mouse->globalPosition().y() - mpos.y();
         window->move(pos);
-        mpos = mouse->globalPos();
+        mpos = mouse->globalPosition().toPoint();
         event->accept();
         return true;
 
@@ -85,7 +85,7 @@ bool Toolbar::eventFilter(QObject *object, QEvent *event)
             break;
 
         moving = true;
-        mpos = mouse->globalPos();
+        mpos = mouse->globalPosition().toPoint();
         event->accept();
         return true;
 #else
