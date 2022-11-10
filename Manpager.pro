@@ -72,12 +72,6 @@ include(src/Main.pri)
 
 RESOURCES += qrc/light.qrc qrc/night.qrc
 OTHER_FILES += \
-    debian/changelog \
-    debian/control \
-    debian/copyright \
-    debian/manpager.install \
-    debian/rules \
-    debian/watch \
     xdg/$${ARCHIVE}.1 \
     xdg/$${ARCHIVE}.desktop \
     xdg/$${ARCHIVE}.appdata.xml \
@@ -86,14 +80,6 @@ OTHER_FILES += \
     LICENSE \
     README.md \
     CONTRIBUTING.md \
-
-# source publish
-unix {
-    QMAKE_EXTRA_TARGETS += source
-    source.commands += $$QMAKE_DEL_FILE *.tar.gz &&
-    source.commands += cd $${PWD} &&
-    source.commands += git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ v$${VERSION} 2>/dev/null || git archive --output="$${OUT_PWD}/$${ARCHIVE}-$${VERSION}.tar.gz" --format tar.gz  --prefix=$${ARCHIVE}-$${VERSION}/ HEAD
-}
 
 # standard build targets...
 !CONFIG(app_bundle) {
