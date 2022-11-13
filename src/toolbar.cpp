@@ -67,10 +67,19 @@ bool Toolbar::eventFilter(QObject *object, QEvent *event)
             break;
 
         pos = window->pos();
+#if QT_VERSION >= 0x060000
         pos.rx() += mouse->globalPosition().x() - mpos.x();
         pos.ry() += mouse->globalPosition().y() - mpos.y();
+#else
+        pos.rx() += mouse->globalPos().x() - mpos.x();
+        pos.ry() += mouse->globalPos().y() - mpos.y();
+#endif
         window->move(pos);
+#if QT_VERSION >= 0x060000
         mpos = mouse->globalPosition().toPoint();
+#else
+        mpos = mouse->globalPos();
+#endif
         event->accept();
         return true;
 
@@ -85,7 +94,11 @@ bool Toolbar::eventFilter(QObject *object, QEvent *event)
             break;
 
         moving = true;
+#if QT_VERSION >= 0x060000
         mpos = mouse->globalPosition().toPoint();
+#else
+        mpos = mouse->globalPos();
+#endif
         event->accept();
         return true;
 #else
